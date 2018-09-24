@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: ./bin/wait-for-postgres -- python manage.py runserver 0.0.0.0:8000
+    environment:
+      - ALLOWED_HOSTS=web,localhost
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - DEBUG=True
+      - DJANGO_SETTINGS_MODULE=mongodb_blog.settings.dev
+      - SECRET_KEY='dev-key'
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
