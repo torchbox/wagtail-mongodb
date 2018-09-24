@@ -1,0 +1,14 @@
+FROM node:8
+
+RUN apt-get update && apt-get install rsync -y
+
+WORKDIR /app/mongodb_blog/static_src
+
+# Install FE dependencies
+COPY ./mongodb_blog/static_src/package.json ./mongodb_blog/static_src/package-lock.json ./
+RUN npm install
+
+COPY ./mongodb_blog/static_src/ ./
+RUN npm run build:prod
+
+ADD . /app/

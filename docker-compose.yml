@@ -24,6 +24,21 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  fe:
+    build:
+      context: .
+      dockerfile: Dockerfile.fe
+    command: npm start
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/app
+      - node_modules:/app/monbodb_blog/static_src/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - web
 
 volumes:
   pgdata:
+  node_modules:

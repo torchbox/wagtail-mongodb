@@ -68,82 +68,850 @@
 
         {% wagtailuserbar %}
 
-        <header class="header">
-            <div class="header__inner wrapper wrapper--large">
-                <a href="{% slugurl 'home' %}">
-                    <img class="header__logo" src="https://placehold.it/150x100" alt="Logo for MongoDB Blog">
-                </a>
-
-                <div class="header__menu-toggle">
-                    <span>Menu</span>
-                    <button class="button button-menu-toggle js-mobile-menu-toggle" aria-haspopup="true" aria-label="Mobile menu toggle">
-                        <span class="button-menu-toggle__line"></span>
-                        <span class="button-menu-toggle__line"></span>
-                        <span class="button-menu-toggle__line"></span>
-                        <span class="button-menu-toggle__line"></span>
-                    </button>
-                </div>
-
-                <section class="header__menus header__menus--desktop">
-                    <div class="header__inner--top">
-                        {% secondarynav %}
-                        <form action="{% url 'search' %}" method="get" role="search" class="form form--header-search">
-                            <input class="input" type="text" placeholder="Search…" name="query"{% if search_query %} value="{{ search_query }}{% endif %}">
-                            <button class="button" type="submit">
-                                <svg class="icon icon--magnifying-glass"><use xlink:href="#magnifying-glass"></use></svg>
-                            </button>
-                        </form>
+        <div id="mongo-app">
+            <div class="app">
+                <nav class="m-nav m-nav-flex-y">
+                    <div class="m-nav-top">
+                        <ul>
+                            <div class="m-nav-top-links m-nav-flex-y m-nav-flex-nowrap">
+                                <a target="_blank" href="https://docs.mongodb.com">
+                                    <li>Docs</li>
+                                </a>
+                                <a target="_blank" href="https://university.mongodb.com">
+                                    <li>Learn</li>
+                                </a>
+                                <a target="_self" href="/what-is-mongodb">
+                                    <li>What's MongoDB?</li>
+                                </a>
+                                <a target="_blank" href="https://cloud.mongodb.com/user/login?nds=true">
+                                    <li>Login</li>
+                                </a>
+                            </div>
+                            <div class="m-nav-flex-y m-nav-flex-nowrap"><a href="/contact?jmp=nav"><button class="reset bg-white m-nav-flex-xy m-nav-top-contact m-r-15"><svg width="18px" height="18px" viewBox="0 0 32 32" fill="#9E9E9E"><path d="M2.13 1.19c1.28-1.28 5.14-1.49 5.17-0.82 0.03 0.68 3.48 8.19 3.51 8.87s-2.27 2.99-2.95 3.66c-0.67 0.67 4.51 6.53 4.61 6.64 0.11 0.1 5.96 5.29 6.63 4.62 0.67-0.68 2.98-2.98 3.65-2.95 0.68 0.03 8.17 3.49 8.85 3.52 0.68 0.03 0.46 3.9-0.81 5.18-1.09 1.1-6.75 5.07-16.59-2.03-1.08-0.62-2.79-2.05-5.38-4.65 0 0 0 0 0 0 0 0 0 0-0.01-0.01s0 0-0.01-0.01c0 0 0 0 0 0-2.59-2.6-4.01-4.31-4.63-5.39-7.08-9.86-3.12-15.54-2.02-16.63z"></path></svg></button></a><span class="m-nav-search m-nav-flex-x"><input class="m-nav-search-input " placeholder="search" /><button class="reset bg-white m-nav-flex-xy m-nav-search-btn "><svg width="21px" height="21px" viewBox="0 0 24 24" fill="#9E9E9E"><path d="M21.7 20.3l-4.5-4.5c1.1-1.4 1.8-3.3 1.8-5.3 0-4.7-3.8-8.5-8.5-8.5s-8.5 3.8-8.5 8.5c0 4.7 3.8 8.5 8.5 8.5 2 0 3.8-0.7 5.3-1.8l4.5 4.5c0.2 0.2 0.5 0.3 0.7 0.3s0.5-0.1 0.7-0.3c0.4-0.4 0.4-1 0-1.4zM4 10.5c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5c0 1.8-0.7 3.4-1.9 4.6 0 0 0 0 0 0s0 0 0 0c-1.2 1.2-2.8 1.9-4.6 1.9-3.6 0-6.5-2.9-6.5-6.5z"></path></svg></button></span><a id="mongodb-nav-download-btn" href="/download-center?jmp=nav" target="_self"><button class="m-nav-top-dl btn-green"><span>Get MongoDB</span><svg width="14px" height="21px" viewBox="0 0 16 21"><g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd"><g transform="translate(-1282.000000, -16.000000)" fill="#FFFFFF"><g transform="translate(0.000000, -1.000000)"><g transform="translate(85.000000, 0.000000)"><g transform="translate(1197.000000, 17.000000)"><path d="M13.9079108,6.9539554 L13.0386664,6.9539554 L13.0386664,8.69244425 L13.9079108,8.69244425 L13.9079108,13.9079108 L1.73848885,13.9079108 L1.73848885,8.69244425 L2.60773328,8.69244425 L2.60773328,6.9539554 L1.73848885,6.9539554 C0.77971225,6.9539554 0,7.73366765 0,8.69244425 L0,16.5156441 C0,17.4744207 0.77971225,18.2541329 1.73848885,18.2541329 L6.9539554,18.2541329 L6.9539554,19.1233774 L4.34622213,19.1233774 L4.34622213,20.8618662 L11.3001775,20.8618662 L11.3001775,19.1233774 L8.69244425,19.1233774 L8.69244425,18.2541329 L13.9079108,18.2541329 C14.8666874,18.2541329 15.6463997,17.4744207 15.6463997,16.5156441 L15.6463997,8.69244425 C15.6463997,7.73366765 14.8666874,6.9539554 13.9079108,6.9539554 L13.9079108,6.9539554 Z"></path><path d="M11.9147333,6.69926679 L10.6856217,5.47015517 L8.69244425,7.46333264 L8.69244425,0 L6.9539554,0 L6.9539554,7.46333264 L4.96077794,5.47015517 L3.73166632,6.69926679 L7.82319983,10.7908003 L11.9147333,6.69926679 Z" id="Shape"></path></g></g></g></g></g></svg></button></a></div>
+                        </ul>
                     </div>
+                    <div class="m-nav-middle">
+                        <ul class="m-nav-flex-space">
+                            <a href="/" class="m-nav-flex-y">
+                                <li class="m-nav-logo"><img src="https://webassets.mongodb.com/_com_assets/global/mongodb-logo-white.png" /></li>
+                                <li class="m-nav-tagline">For Giant Ideas</li>
+                            </a>
+                            <div class="m-nav-middle-lists m-nav-flex-xy">
+                                <li class="m-nav-middle-li "><a href="/products/overview">Solutions</a></li>
+                                <li class="m-nav-middle-li "><a href="/cloud">Cloud</a></li>
+                                <li class="m-nav-middle-li "><a href="/who-uses-mongodb">Customers</a></li>
+                                <li class="m-nav-middle-li "><a href="/resource-center">Resources</a></li>
+                                <li class="m-nav-middle-li "><a href="/company">About Us</a></li>
+                            </div>
+                            <li class="m-nav-middle-toggle"><svg width="30" height="30" viewBox="0 0 768 768"><path d="M96 160h576q13.3 0 22.6 9.4t9.4 22.6-9.4 22.6-22.6 9.4h-576q-13.2 0-22.6-9.4t-9.4-22.6 9.4-22.6 22.6-9.4zM96 544h576q13.3 0 22.6 9.4t9.4 22.6-9.4 22.6-22.6 9.4h-576q-13.2 0-22.6-9.4t-9.4-22.6 9.4-22.6 22.6-9.4zM96 352h576q13.3 0 22.6 9.4t9.4 22.6-9.4 22.6-22.6 9.4h-576q-13.2 0-22.6-9.4t-9.4-22.6 9.4-22.6 22.6-9.4z"></path></svg></li>
+                        </ul>
+                    </div>
+                    <div class="m-nav-bg m-nav-flex-x">
+                        <div class="m-nav-bottom">
+                            <div class="m-nav-bottom-list fl fl-wrap fl-justify-between m-nav-bottom-list-inactive">
+                                <div class="m-nav-cta m-nav-cta-first">
+                                    <h2>Try It Now</h2>
+                                    <ul>
+                                        <a href="/mongodb-3.6">
+                                            <li><strong>MongoDB 3.6</strong></li>
+                                        </a>
+                                        <a href="/cloud/stitch">
+                                            <li><strong>MongoDB Stitch</strong></li>
+                                        </a>
+                                        <a href="/cloud/atlas">
+                                            <li><strong>MongoDB Atlas</strong></li>
+                                        </a>
+                                        <a href="/download-center">
+                                            <li><strong>Download Center</strong></li>
+                                        </a>
+                                        <a href="/what-is-mongodb">
+                                            <li><strong>What's MongoDB?</strong></li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <ul>
+                                    <a href="/products/overview" target="_self">
+                                        <li><strong>Products</strong></li>
+                                    </a>
+                                    <a href="/products/mongodb-enterprise-advanced" target="_self">
+                                        <li><span>MongoDB Enterprise Advanced</span></li>
+                                    </a>
+                                    <a href="/partners/partner-program/oem" target="_self">
+                                        <li><span>MongoDB Enterprise for OEM</span></li>
+                                    </a>
+                                    <a href="/products/mongodb-professional" target="_self">
+                                        <li><span>MongoDB Professional</span></li>
+                                    </a>
+                                    <a href="/cloud/stitch" target="_self">
+                                        <li><span>MongoDB Stitch</span></li>
+                                    </a>
+                                    <a href="/cloud/atlas" target="_self">
+                                        <li><span>MongoDB Atlas</span></li>
+                                    </a>
+                                    <a href="/products/development-support" target="_self">
+                                        <li><span>Development Support</span></li>
+                                    </a>
+                                    <a href="/products/ops-manager" target="_self">
+                                        <li><span>Ops Manager</span></li>
+                                    </a>
+                                    <a href="/cloud/cloud-manager" target="_self">
+                                        <li><span>Cloud Manager</span></li>
+                                    </a>
+                                    <a href="/products/compass" target="_self">
+                                        <li><span>Compass</span></li>
+                                    </a>
+                                    <a href="/products/bi-connector" target="_self">
+                                        <li><span>Connector for BI</span></li>
+                                    </a>
+                                    <a href="/products/spark-connector" target="_self">
+                                        <li><span>Connector for Spark</span></li>
+                                    </a>
+                                </ul>
+                                <ul>
+                                    <a href="/products/consulting" target="_self">
+                                        <li><strong>Services</strong></li>
+                                    </a>
+                                    <a href="/products/consulting" target="_self">
+                                        <li><span>Consulting</span></li>
+                                    </a>
+                                    <a href="https://university.mongodb.com/private_training" target="_blank">
+                                        <li><span>Training</span></li>
+                                    </a>
+                                    <a href="/customer-success" target="_self">
+                                        <li><span>Customer Success</span></li>
+                                    </a>
+                                </ul>
+                            </div>
+                            <div class="m-nav-bottom-list fl fl-wrap fl-justify-between m-nav-bottom-list-inactive">
+                                <div class="m-nav-cta ">
+                                    <h2>MongoDB Cloud Services</h2>
+                                    <ul>
+                                        <a href="https://cloud.mongodb.com/links/registerForAtlas">
+                                            <li><strong>Sign up</strong></li>
+                                        </a>
+                                        <a href="https://cloud.mongodb.com/user/login?nds=true">
+                                            <li><strong>Log in</strong></li>
+                                        </a>
+                                        <a href="/cloud/atlas/migrate">
+                                            <li><strong>Live migrate to fully automated cloud service for MongoDB</strong></li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <ul>
+                                    <a href="/cloud" target="_self">
+                                        <li><strong>Products</strong></li>
+                                    </a>
+                                    <a href="/cloud" target="_self">
+                                        <li><span>Overview</span></li>
+                                    </a>
+                                    <a href="/cloud/atlas" target="_self">
+                                        <li><span>MongoDB Atlas<small>Database as a Service</small></span></li>
+                                    </a>
+                                    <a href="/cloud/stitch" target="_self">
+                                        <li><span>MongoDB Stitch<small>Backend as a Service</small></span></li>
+                                    </a>
+                                    <a href="/cloud/cloud-manager" target="_self">
+                                        <li><span>MongoDB Cloud Manager<small>Monitoring, Backup, &amp; Automation</small></span></li>
+                                    </a>
+                                </ul>
+                                <ul>
+                                    <li><strong>Resources</strong></li>
+                                    <a href="/cloud/stitch/faq" target="_self">
+                                        <li><span>MongoDB Stitch FAQ</span></li>
+                                    </a>
+                                    <a href="/cloud/atlas/faq" target="_self">
+                                        <li><span>MongoDB Atlas FAQ</span></li>
+                                    </a>
+                                    <a href="/cloud/atlas/pricing" target="_self">
+                                        <li><span>MongoDB Atlas Pricing</span></li>
+                                    </a>
+                                    <a href="https://university.mongodb.com/courses/M123/about" target="_self">
+                                        <li><span>MongoDB Atlas Training</span></li>
+                                    </a>
+                                    <a href="http://docs.mongodb.com/stitch/" target="_self">
+                                        <li><span>MongoDB Stitch Documentation</span></li>
+                                    </a>
+                                    <a href="https://docs.atlas.mongodb.com/" target="_self">
+                                        <li><span>MongoDB Atlas Documentation</span></li>
+                                    </a>
+                                    <a href="https://docs.cloud.mongodb.com/" target="_self">
+                                        <li><span>MongoDB Cloud Manager Documentation</span></li>
+                                    </a>
+                                </ul>
+                            </div>
+                            <div class="m-nav-bottom-list fl fl-wrap fl-justify-between m-nav-bottom-list-inactive">
+                                <div class="m-nav-cta ">
+                                    <h2>Try It Now</h2>
+                                    <ul>
+                                        <a href="/mongodb-3.6">
+                                            <li><strong>MongoDB 3.6</strong></li>
+                                        </a>
+                                        <a href="/cloud/stitch">
+                                            <li><strong>MongoDB Stitch</strong></li>
+                                        </a>
+                                        <a href="/cloud/atlas">
+                                            <li><strong>MongoDB Atlas</strong></li>
+                                        </a>
+                                        <a href="/download-center">
+                                            <li><strong>Download Center</strong></li>
+                                        </a>
+                                        <a href="/what-is-mongodb">
+                                            <li><strong>What's MongoDB?</strong></li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <ul>
+                                    <a href="/who-uses-mongodb" target="_self">
+                                        <li><strong>Success Stories</strong></li>
+                                    </a>
+                                    <a href="/industries/government" target="_self">
+                                        <li><span>Government</span></li>
+                                    </a>
+                                    <a href="/industries/retail" target="_self">
+                                        <li><span>Retail</span></li>
+                                    </a>
+                                    <a href="/industries/high-tech" target="_self">
+                                        <li><span>High Tech</span></li>
+                                    </a>
+                                    <a href="/industries/financial-services" target="_self">
+                                        <li><span>Financial Services</span></li>
+                                    </a>
+                                    <a href="/industries" target="_self">
+                                        <li><span>All industries</span></li>
+                                    </a>
+                                </ul>
+                                <ul>
+                                    <a href="/use-cases" target="_self">
+                                        <li><strong>Use Cases</strong></li>
+                                    </a>
+                                    <a href="/use-cases/single-view" target="_self">
+                                        <li><span>Single View</span></li>
+                                    </a>
+                                    <a href="/use-cases/internet-of-things" target="_self">
+                                        <li><span>Internet of Things</span></li>
+                                    </a>
+                                    <a href="/use-cases/mobile" target="_self">
+                                        <li><span>Mobile</span></li>
+                                    </a>
+                                    <a href="/use-cases/real-time-analytics" target="_self">
+                                        <li><span>Real-Time Analytics</span></li>
+                                    </a>
+                                    <a href="/use-cases/personalization" target="_self">
+                                        <li><span>Personalization</span></li>
+                                    </a>
+                                    <a href="/use-cases/content-management" target="_self">
+                                        <li><span>Content Management</span></li>
+                                    </a>
+                                    <a href="/use-cases/catalog" target="_self">
+                                        <li><span>Catalog</span></li>
+                                    </a>
+                                </ul>
+                            </div>
+                            <div class="m-nav-bottom-list fl fl-wrap fl-justify-between m-nav-bottom-list-inactive">
+                                <div class="m-nav-cta ">
+                                    <h2>Popular Topics</h2>
+                                    <ul>
+                                        <a href="https://resources.mongodb.com/microservices?jmp=nav">
+                                            <li><strong>Microservices</strong></li>
+                                        </a>
+                                        <a href="https://resources.mongodb.com/big-data?jmp=nav">
+                                            <li><strong>Operational Intelligence</strong></li>
+                                        </a>
+                                        <a href="https://resources.mongodb.com/internet-of-things?jmp=nav">
+                                            <li><strong>Internet of Things</strong></li>
+                                        </a>
+                                        <a href="https://resources.mongodb.com/migrating-to-mongodb?jmp=nav">
+                                            <li><strong>Migrating to MongoDB</strong></li>
+                                        </a>
+                                        <a href="https://resources.mongodb.com/mongodb-security?jmp=nav">
+                                            <li><strong>MongoDB Security</strong></li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <ul>
+                                    <a href="/resource-center" target="_self">
+                                        <li><strong>Resource Center</strong></li>
+                                    </a>
+                                    <a href="/webinars" target="_self">
+                                        <li><span>Webinars</span></li>
+                                    </a>
+                                    <a href="/presentations" target="_self">
+                                        <li><span>Presentations</span></li>
+                                    </a>
+                                    <a href="/white-papers" target="_self">
+                                        <li><span>White Papers</span></li>
+                                    </a>
+                                    <a href="/datasheets" target="_self">
+                                        <li><span>Datasheets</span></li>
+                                    </a>
+                                    <a href="/events" target="_self">
+                                        <li><span>Events</span></li>
+                                    </a>
+                                    <a href="/blog" target="_self">
+                                        <li><span>Blog</span></li>
+                                    </a>
+                                    <a href="/community" target="_self">
+                                        <li><span>Community</span></li>
+                                    </a>
+                                    <a href="https://docs.mongodb.com/" target="_blank">
+                                        <li><span>Documentation</span></li>
+                                    </a>
+                                </ul>
+                                <ul>
+                                    <a href="/what-is-mongodb" target="_self">
+                                        <li><strong>What is MongoDB</strong></li>
+                                    </a>
+                                    <a href="/mongodb-architecture" target="_self">
+                                        <li><span>Architecture</span></li>
+                                    </a>
+                                    <a href="/mongodb-scale" target="_self">
+                                        <li><span>Scalability</span></li>
+                                    </a>
+                                    <a href="/nosql-explained" target="_self">
+                                        <li><span>NoSQL Database Explained</span></li>
+                                    </a>
+                                    <a href="https://resources.mongodb.com/getting-started-with-mongodb?jmp=nav" target="_blank">
+                                        <li><span>Getting Started with MongoDB</span></li>
+                                    </a>
+                                    <a href="/evolved" target="_self">
+                                        <li><span>The Evolution of MongoDB</span></li>
+                                    </a>
+                                </ul>
+                            </div>
+                            <div class="m-nav-bottom-list fl fl-wrap fl-justify-between m-nav-bottom-list-inactive">
+                                <div class="m-nav-cta ">
+                                    <h2>Stay in the know</h2>
+                                    <ul>
+                                        <a href="/newsletter">
+                                            <li><strong>Sign up for our newsletter</strong></li>
+                                        </a>
+                                    </ul>
+                                </div>
+                                <ul>
+                                    <a href="/company" target="_self">
+                                        <li><strong>Our Company</strong></li>
+                                    </a>
+                                    <a href="/company#core-values" target="_self">
+                                        <li><span>Core Values</span></li>
+                                    </a>
+                                    <a href="/leadership" target="_self">
+                                        <li><span>Leadership</span></li>
+                                    </a>
+                                    <a href="https://investors.mongodb.com" target="_self">
+                                        <li><span>Investor Relations</span></li>
+                                    </a>
+                                    <a href="/office-locations" target="_self">
+                                        <li><span>Office Locations</span></li>
+                                    </a>
+                                    <a href="/contact" target="_self">
+                                        <li><span>Contact Us</span></li>
+                                    </a>
+                                    <a href="/blog" target="_self">
+                                        <li><span>Blog</span></li>
+                                    </a>
+                                    <a href="/partners" target="_self">
+                                        <li><span>Partners</span></li>
+                                    </a>
+                                    <a href="/pressroom" target="_self">
+                                        <li><span>Press Room</span></li>
+                                    </a>
+                                </ul>
+                                <ul>
+                                    <a href="/careers" target="_self">
+                                        <li><strong>Careers</strong></li>
+                                    </a>
+                                    <a href="/careers" target="_self">
+                                        <li><span>Work at MongoDB</span></li>
+                                    </a>
+                                    <a href="/careers/college-students" target="_self">
+                                        <li><span>Student Opportunities</span></li>
+                                    </a>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+                <header class="relative fl fl-center fl-column h-350">
+                    <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;/blog/assets/header.png&quot;); opacity: 1;"></div>
+                    <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;&quot;); opacity: 0;"></div>
+                    <div class="header-mask absolute top left w-full h-full" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+                    <h1 class="relative white w-max-800 m-h-20 m-v-5 p-t-50 txt-center ">GIANT Stories at MongoDB</h1><a href="/newsletter/blog-digest"><button class="relative btn-green m-5">Subscribe</button></a></header>
+                <main class="relative w-max-650 h-min-700 m-auto">
+                    <div class="w-full">
+                        <aside class="absolute hide-lt-1140 w-full m-v-40 p-h-10 bg-white" style="max-width: 310px; margin-left: -300px;"><input class="input-main disp-block m-v-10" type="text" placeholder="Search all blog posts" style="width: 80%; margin-left: 3px;" /><a href="/blog/category/release-notes"><button class="btn-gray no-shadow btn-small m-2">Release Notes</button></a><a href="/blog/category/emerging-technology"><button class="btn-gray no-shadow btn-small m-2">Emerging Technology</button></a><a href="/blog/category/community"><button class="btn-gray no-shadow btn-small m-2">Community</button></a><a href="/blog/category/customer-stories"><button class="btn-gray no-shadow btn-small m-2">Customer Stories</button></a><a href="/blog/category/business"><button class="btn-gray no-shadow btn-small m-2">Business</button></a><a href="/blog/category/technical"><button class="btn-gray no-shadow btn-small m-2">Technical</button></a><a href="/blog/category/cloud"><button class="btn-gray no-shadow btn-small m-2">Cloud</button></a><a href="/blog/category/events"><button class="btn-gray no-shadow btn-small m-2">Events</button></a><a href="/blog/category/company"><button class="btn-gray no-shadow btn-small m-2">Company</button></a><a href="/blog/category/aws-re:invent-2017"><button class="btn-gray no-shadow btn-small m-2">AWS re:Invent 2017</button></a><a href="/blog/category/mongodb-3.6"><button class="btn-gray no-shadow btn-small m-2">MongoDB 3.6</button></a><a href="/blog/category/culture"><button class="btn-gray no-shadow btn-small m-2">Culture</button></a><a href="/blog/category/mongodb-4.0"><button class="btn-gray no-shadow btn-small m-2">MongoDB 4.0</button></a>
+                            <div class="m-v-10"></div>
+                            <div hidden class="m-v-30" style="opacity: 0; transition: 300ms;"></div>
+                            <div class="fixed bottom m-b-20"></div>
+                        </aside>
+                    </div>
+                    <div class="absolute right hide-lt-1260 w-max-300 w-full m-v-30 p-l-20" style="margin-right: -300px;">
+                        <aside>
+                            <div>
+                                <h6>Sign up for our monthly blog digest</h6>
+                                <div class="form-error"></div>
+                                <div hidden><small>Thanks for subscribing to the newsletter. This is your channel for getting the latest notifications of server and driver releases, details on local MongoDB events, updates on education programs, and the skinny on all things MongoDB.</small></div>
+                                <form autoComplete="on"><input type="hidden" defaultValue="en" name="language" id="language" /><input type="hidden" defaultValue="Int_NL_NewsletterSignup-Blogson.com/.org_WW" name="elqFormName" id="elqFormName" /><input type="hidden" defaultValue="413370795" name="elqSiteID" id="elqSiteID" /><input type="hidden" defaultValue="0" name="elqCookieWrite" id="elqCookieWrite" /><input type="hidden" name="elqCustomerGUID" id="elqCustomerGUID" /><input type="hidden" name="db_company_name" id="db_company_name" /><input type="hidden" name="db_demandbase_sid" id="db_demandbase_sid" /><input type="hidden" name="db_marketing_alias" id="db_marketing_alias" /><input type="hidden" name="db_industry" id="db_industry" /><input type="hidden" name="db_sub_industry" id="db_sub_industry" /><input type="hidden" name="db_employee_count" id="db_employee_count" /><input type="hidden" name="db_primary_sic" id="db_primary_sic" /><input type="hidden" name="db_street_address" id="db_street_address" /><input type="hidden" name="db_city" id="db_city" /><input type="hidden" name="db_state" id="db_state" /><input type="hidden" name="db_zip" id="db_zip" /><input type="hidden" name="db_country" id="db_country" /><input type="hidden" name="db_country_name" id="db_country_name" /><input type="hidden" name="db_phone" id="db_phone" /><input type="hidden" name="db_stock_ticker" id="db_stock_ticker" /><input type="hidden" name="db_web_site" id="db_web_site" /><input type="hidden" name="db_annual_sales" id="db_annual_sales" /><input type="hidden" name="db_revenue_range" id="db_revenue_range" /><input type="hidden" name="db_employee_range" id="db_employee_range" /><input type="hidden" name="db_b2b" id="db_b2b" /><input type="hidden" name="db_b2c" id="db_b2c" /><input type="hidden" name="db_traffic" id="db_traffic" /><input type="hidden" name="db_latitude" id="db_latitude" /><input type="hidden" name="db_longitude" id="db_longitude" /><input type="hidden" name="db_fortune_1000" id="db_fortune_1000" /><input type="hidden" name="db_forbes_2000" id="db_forbes_2000" /><input type="hidden" name="ip_address" id="ip_address" /><input type="hidden" name="jump_id" id="jump_id" /><input required id="name" class="input-main disp-block w-three-quarter m-0 m-v-10" name="name" type="text" placeholder="Name" autoComplete="name" /><input required id="email" class="input-main disp-block w-three-quarter m-0 m-v-10" name="email" type="email" placeholder="Email Address" autoComplete="email" /><input type="submit" value="Submit" class="btn-green btn-small" /></form>
+                            </div>
+                            <div class="m-v-30">
+                                <div class="fl fl-center"><svg class="p-r-10 w-85" viewBox="0 0 50 40"><g fill="none" fill-rule="evenodd"><g transform="translate(-864 -1325)" stroke="#69B342" stroke-width="2"><g transform="translate(865 1283)"><g transform="translate(0 43)"><g transform="translate(0 .16667)"><g><path d="m47.958 33.375c0 2.3-1.8646 4.1667-4.1667 4.1667h-39.583c-2.3 0-4.1667-1.8667-4.1667-4.1667v-29.167c0-2.3 1.8667-4.1667 4.1667-4.1667h39.583c2.3021 0 4.1667 1.8667 4.1667 4.1667v29.167z"></path><path d="m0.041667 10h47.917"></path><circle cx="7.3333" cy="5.25" r="1.0417"></circle><ellipse cx="13.583" cy="5.25" rx="1.0417" ry="1.0417"></ellipse><ellipse cx="19.833" cy="5.25" rx="1.0417" ry="1.0417"></ellipse><polyline points="10.458 18.792 15.667 24 10.458 29.208"></polyline><path d="m22.958 25h8.3333"></path></g></g></g></g></g></g></svg>
+                                    <h4 class="m-0">The MongoDB Engineering Journal</h4></div>
+                                <p>A tech blog for builders, by builders</p><a href="https://engineering.mongodb.com"><button class="btn-green btn-small">View Now</button></a></div>
+                            <div id="div-gpt-ad-1501783583142-0" style="transform: scale(0.8) translate(-12.5%, 0);" class="h-250 w-max-280"></div>
+                        </aside>
+                    </div>
+                    <div class="overflow-hidden">
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/implementing-an-endtoend-iot-solution-in-mongodb-from-sensor-to-cloud" class="reset"><h3 class="m-v-15">Implementing an end-to-end IoT solution in MongoDB: From sensor to cloud</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/robert-walters">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Screen Shot 2018-09-10 at 2.21.42 PM-re401vyrzm.png&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/robert-walters">Robert Walters</a></small><br /><small>September 20, 2018</small><br /><a href="/blog/category/iot"><small>IoT</small></a>, <a href="/blog/category/technical"><small>Technical</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>Many companies across the world have chosen MongoDB as the data platform for their IoT workloads. MongoDB makes it easy to store a variety of heterogeneous sensor data in a natural, intuitive way and blend it with enterprise data, allowing you to integrate IoT apps across your organization. Experience setting up your own temperature sampling solution in the referenced article.</p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/implementing-an-endtoend-iot-solution-in-mongodb-from-sensor-to-cloud" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/mongodb-on-the-road--seattle-codecamp" class="reset"><h3 class="m-v-15">MongoDB On The Road - Seattle CodeCamp</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/ken-w.-alger">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/KenWAlger_HeadShot-2t0zvcp8g8.jpg&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/ken-w.-alger">Ken W. Alger</a></small><br /><small>September 20, 2018</small><br /></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p><a href="https://seattle.codecamp.us/">Seattle CodeCamp</a> was held in the Pigott Building on the beautiful <a href="https://www.seattleu.edu/">Seattle University</a> campus. With the scenic Puget Sound just a few blocks to the west down Madison St and Lake Washington to the east down Cherry St, Seattle CodeCamp was situated in a magnificent venue.
 
-                    {% primarynav %}
-                </section>
+                                    <p>This year, on Saturday, September 15, 2018, 450 developers attended the event. The sponsorship hall had representatives from a few of the conference sponsors including GitHub, Flatiron School, and the College of Science and Engineering from Seattle University. There were plenty of stickers and sponsor information up for grabs along with some great representatives from the companies to talk with.</p>
 
-                <section class="header__menus header__menus--mobile js-mobile-menu">
-                    {% primarynav %}
-                </section>
+                                    <p><img src="https://webassets.mongodb.com/_com_assets/cms/scc-swag-1nx9id02tg.png" alt="Seattle Code Camp Swag" width="320" style="    display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;"></p>
+                                    <p>The conference sessions included over 65 sessions. One of the things I really enjoy about the CodeCamp events I’ve attended is the wide variety of speakers and session topics available. Everything from front-end to back-end topics is open game and available to learn.</p>
+
+                                    <p>Interested in IoT topics? There were sessions on those. Microservices, yup, <a href="https://www.twitter.com/dotnetauthor ">Vidya Vrat Agarwal</a> from T-Mobile gave a talk on the what, why, and how of those. Interested in the JAQ (Java + Angular + database) Stack? Adobe’s <a href="https://www.twitter.com/surenkonathala">Suren Konathala</a> gave an amazing talk on that. My former Treehouse colleague, <a href="https://www.twitter.com/smashdev">James Churchill</a>, gave a talk comparing JavaScript Frameworks.</p>
+
+                                    <p>And that’s just a small sample of the topics covered at this year’s Seattle Codecamp. I presented a talk on MongoDB & Node.js to a room of about 25 people. I brought with me a supply of MongoDB socks to give session attendees some swag which went over well. A large percentage of people in the room were unfamiliar with MongoDB in general and the MEAN/MERN stack specifically. </p>
+
+                                    <p><img src="https://webassets.mongodb.com/_com_assets/cms/mdb-socks-7too038bol.png" alt="MongoDB Swag Socks" width="320" style="    display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;"></p>
+                                    <p>As a result, I tailored my talk to discuss the technologies themselves before showing how building an API is done with Node.js, Express.js, and MongoDB. I built an API that served up restaurants indexed by location. After building a functioning API I showed some of the features of MongoDB Compass to explore the data, perform CRUD operations, and leverage the geo-spatial data that was being stored inside MongoDB.</p>
+
+                                    <p>There were several MongoDB specific questions brought up during the session about some of the differences between the way legacy, relational databases store information and how a next generation database, such as MongoDB handles similar schema design and queries. It was a great discussion and provided a great opportunity to educate developers on the flexibility of MongoDB’s document model and the increase in development speed. You can find the project code on GitHub along with the talk slides <a href="https://www.github.com/kenwalger/scc2018">here</a>.</p>
+
+                                    <p>MongoDB is the easiest and fastest way to work with data. Download <a href="https://www.mongodb.com/compass">MongoDB Compass</a> today and start making smarter decisions about document structure, querying, indexing, and more.</p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/mongodb-on-the-road--seattle-codecamp" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/listing-your-mongodb-atlas-resources" class="reset"><h3 class="m-v-15">Listing Your MongoDB Atlas Resources</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/joe-drumgoole,-director-of-developer-advocacy,-emea">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/joe drumgoole, director developer advocacy-d07db49051.jpg&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/joe-drumgoole,-director-of-developer-advocacy,-emea">Joe Drumgoole, Director of Developer Advocacy, EMEA</a></small><br /><small>September 19, 2018</small><br /><a href="/blog/category/mongodb"><small>mongodb</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>If you want to use the <a href="https://docs.atlas.mongodb.com/api/">MongoDB Atlas API</a> to manage your clusters one of the first things you will discover is that <a href="https://docs.atlas.mongodb.com/reference/api-resources/">resource IDs</a> are the keys to the kingdom. In order to use the API you will need an API key and you will need to grant access to your program via the API whitelist. </p>
+                                <p>You can set up your API keys and API whitelist on this screen. </p>
+                                <p><img src="https://webassets.mongodb.com/_com_assets/cms/Atlas_account_settings-gps6ejkh41.png" alt="Atlas Account Settings"></p>
+                                <p>Once they are set up you can use them to run the py-atlas-list.py script to get a list of all resources. </p>
+                                <pre><code>$ ./py-atlas-list.py -h
+    usage: py-atlas-list.py [-h] [--username USERNAME] [--apikey APIKEY]
+                            [--org_id ORG_ID]
+
+    optional arguments:
+    -h, --help           show this help message and exit
+    --username USERNAME  MongoDB Atlas username
+    --apikey APIKEY      MongoDB Atlas API key
+    --org_id ORG_ID      specify an organization to limit what is listed
+    $</code></pre>
+                                <p>If you run this on the command line you will get</p>
+                                <p><img src="https://webassets.mongodb.com/_com_assets/cms/py-atlas-list-g872s37hrp.png" alt="Py Atlas List"></p>
+                                <p>The project and org IDs have been occluded for security purposes. As you can see the Organization ID, Project IDs and Cluster names are displayed. These will be required by other parts of the API. </p>
+                                <p>Give it a <a href="https://github.com/jdrumgoole/py-atlas/blob/master/py-atlas-list.py">spin</a>. There is a <code>Pipfile.lock</code> for pipenv users. </p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/listing-your-mongodb-atlas-resources" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/time-series-data-and-mongodb-part-3--querying-analyzing-and-presenting-timeseries-data" class="reset"><h3 class="m-v-15">Time Series Data and MongoDB: Part 3 – Querying, Analyzing, and Presenting Time-Series Data</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/robert-walters">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Screen Shot 2018-09-10 at 2.21.42 PM-re401vyrzm.png&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/robert-walters">Robert Walters</a></small><br /><small>September 19, 2018</small><br /><a href="/blog/category/technical"><small>Technical</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>This blog series seeks to provide best practices as you build out your time series application on MongoDB. In this post, part three, we will cover how to query, analyze and present time-series data stored in MongoDB.</p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/time-series-data-and-mongodb-part-3--querying-analyzing-and-presenting-timeseries-data" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/building-a-rest-api-with-mongodb-stitch" class="reset"><h3 class="m-v-15">Building a REST API with MongoDB Stitch</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/andrew-morgan">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Andrew Morgan Mug 2017-3654lkffrh.jpg&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/andrew-morgan">Andrew Morgan</a></small><br /><small>September 19, 2018</small><br /><a href="/blog/category/technical"><small>Technical</small></a>, <a href="/blog/category/cloud"><small>Cloud</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>MongoDB Stitch QueryAnywhere often removes the need to create REST APIs, but for the other times, Stitch webhooks let you create them in minutes.</p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/building-a-rest-api-with-mongodb-stitch" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/mongodb-40-nonblocking-secondary-reads" class="reset"><h3 class="m-v-15">MongoDB 4.0: Non-Blocking Secondary Reads</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/mat-keep">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/mat-keep-abecf68be4.jpeg&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/mat-keep">Mat Keep</a></small><br /><small>September 19, 2018</small><br /><a href="/blog/category/technical"><small>Technical</small></a>, <a href="/blog/category/mongodb-4.0"><small>MongoDB 4.0</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>Many MongoDB users scale read performance by distributing their query load across secondary replicas. With the MongoDB 4.0 release, reads are no longer blocked when oplog entries are applied. Here&#39;s how</p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/mongodb-40-nonblocking-secondary-reads" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/handling-files-using-mongodb-stitch-and-aws-s3" class="reset"><h3 class="m-v-15">Handling Files using MongoDB Stitch and AWS S3</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/aydrian-howard">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Screen Shot 2018-07-16 at 12.59.08 PM-qwonqaewep.png&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/aydrian-howard">Aydrian Howard</a></small><br /><small>September 18, 2018</small><br /><a href="/blog/category/mongodb"><small>mongodb</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>MongoDB is the best way to work with data. As developers, we are faced with design decisions about data storage. For small pieces of data, it’s often an easy decision. Storing all of <a href="http://www.gutenberg.org/ebooks/100">Shakespeare’s works</a>, all 38 plays, 154 sonnets, and poems takes up 5.6MB of space in plain text. That’s simple to handle in MongoDB. What happens, however, when we want to include rich information with images, audio, and video? We can certainly store that information <a href="https://docs.mongodb.com/manual/core/gridfs/">inside the database</a>, but another approach is to leverage cloud data storage. Services such as <a href="https://aws.amazon.com/s3/">AWS S3</a> allow you to store and retrieve any amount of data stored in buckets and you can store references in your MongoDB database.</p>
+                                <p>With a built-in AWS Service, MongoDB Stitch provides the means to easily update and track files uploaded to an S3 bucket without having to write any backend code. In a recent Stitchcraft live coding session on <a href="https://twitch.tv/itsaydrian">my Twitch channel</a>, I demonstrated how to upload a file to S3 and record it in a collection directly from a React.js application. After I <a href="https://docs.mongodb.com/stitch/reference/partner-services/amazon-service/#add-an-aws-service">added an AWS Service</a> (which just required putting in IAM credentials) to my Stitch application and <a href="https://docs.aws.amazon.com/quickstarts/latest/s3backup/step-1-create-bucket.html">set up my S3 Bucket</a>, I only needed to add the following code to my React.js application to handle uploading my file from a file input control:</p>
+                                <pre><code class="language-javascript">
+    handleFileUpload(file) {
+    if (!file) {
+    return
+    }
+
+    const key = `${this.client.auth.user.id}-${file.name}`
+    const bucket = &#39;stitchcraft-picstream&#39;
+    const url = `http://${bucket}.s3.amazonaws.com/${encodeURIComponent(key)}`
+
+    return convertImageToBSONBinaryObject(file)
+    .then(result =&gt; {
+        // AWS S3 Request
+        const args = {
+        ACL: &#39;public-read&#39;,
+        Bucket: bucket,
+        ContentType: file.type,
+        Key: key,
+        Body: result
+        }
+
+        const request = new AwsRequest.Builder()
+        .withService(&#39;s3&#39;)
+        .withAction(&#39;PutObject&#39;)
+        .withRegion(&#39;us-east-1&#39;)
+        .withArgs(args)
+        .build()
+
+        return this.aws.execute(request)
+    })
+    .then(result =&gt; {
+        // MongoDB Request
+        const picstream = this.mongodb.db(&#39;data&#39;).collection(&#39;picstream&#39;)
+        return picstream.insertOne({
+        owner_id: this.client.auth.user.id,
+        url,
+        file: {
+            name: file.name,
+            type: file.type
+        },
+        ETag: result.ETag,
+        ts: new Date()
+        })
+    })
+    .then(result =&gt; {
+        // Update UI
+        this.getEntries()
+    })
+    .catch(console.error)
+    }
+    </code></pre>
+                                <p>To watch me put it all together, check out the recording of the <a href="https://youtu.be/3Kt3n--pJ48">Stitchcraft live coding session</a> and check out the link to the GitHub repo in the description. Be sure to <a href="https://twitch.tv/itsaydrian">follow me on Twitch</a> and tune in for future Stitchcraft live coding sessions.</p>
+                                <p>-Aydrian Howard<br><a href="https://www.twitter.com/aydrianh">@aydrianh</a><br>Developer Advocate<br>NYC </p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/handling-files-using-mongodb-stitch-and-aws-s3" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/digital-cryptocurrency-exchange-overcomes-scaling-challenges-with-mongodb-atlas" class="reset"><h3 class="m-v-15">Leading digital cryptocurrency exchange cuts developer time by two-thirds and overcomes scaling challenges with MongoDB Atlas</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/jack-costley">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/0-1-u4wlrr9xqu.jpg&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/jack-costley">Jack Costley</a></small><br /><small>September 18, 2018</small><br /><a href="/blog/category/customer-stories"><small>Customer Stories</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>Cryptocurrency investing is a wild ride. And while many have contemplated the lucrative enterprise of building an exchange, few have the technical know-how, robust engineering, and nerves of steel to succeed. Discidium Internet Labs decided it qualified and launched <a href="https://koinex.in/" target="_blank">Koinex</a>, a multi-cryptocurrency trading platform, in India in August 2017. By the end of the year, it was the largest digital asset exchange by volume in the country.</p>
+                                <p>“India loves cryptocurrencies like Bitcoin and Ripple,” says <a href="https://www.linkedin.com/in/iitdrakesh/" target="_blank">Rakesh Yadav</a>, Co-Founder &amp; CTO Koinex. “We wanted to be the first local exchange to operate in accordance with global best practices. But we needed to provide a great user experience fast with a small development team. Transaction speed is one thing but developer bandwidth is the real limiting factor. “ </p>
+                                <p>Those who follow the cryptocurrency markets will know that challenges come fast and furious, with huge swings in prices and trading volumes driven by unpredictable developments, all in an environment of rapidly changing regulations. For an exchange with the scope and ambition of Koinex – it currently offers trading in more than 50 pairs of cryptocurrencies – that leads to a lot of exposure to market volatility.</p>
+                                <p>For example, Rakesh says, three months after the launch, Koinex saw a huge spike in Ripple (XRP) transactions. “It was 50 times the volume we’d seen before,” he says. A group of Japanese credit card companies had just announced Ripple support, giving it a huge increase in trustworthiness. The trading volumes ramped up and stayed up. But the PostgreSQL deployment (a tabular database) underpinning the Koinex platform couldn’t keep pace with surging demand. </p>
+                                <p>“Everything was stored in PostgreSQL, and it wasn’t keeping up. We had an overwhelming growth in data with read and write times slowing because of large indexes, and CPUs spiking. Moving our deployment to Aurora RDS gave us two times improvement. But it wasn’t enough as we could not scale beyond a single instance for writes. We were seeing just one thousand transactions per second, and we wanted to aim for 100,000.” If one spike on one cryptocurrency could cause such problems, what would a really busy market look like? Time to aim high.</p>
+                                <p>“We decided to move the 80 percent of data that needed real-time responses to MongoDB’s fully managed database as a service <a href="https://www.mongodb.com/cloud/atlas" target="_blank">Atlas</a>, and run it all on AWS.”</p>
+                                <h3>The MongoDB Atlas experience</h3>
+
+                                <p>The move was started in January as part of the development of a new trading engine and, as <a href="https://www.linkedin.com/in/darxtrix/" target="_blank">Ankush Sharma</a> Senior Platform Engineer at Koinex explains, MongoDB Atlas looked like a good fit for a number of reasons. “It had sharding out of the box, which we saw as essential as this gave us the ability to distribute write loads out across multiple servers, without any application changes at all. Atlas also meant fewer code changes, less frequent resizing or cluster changes, and as little operational input from us as possible.”</p>
+                                <p>Other aspects of the database seemed promising. “Its flexible data model made it a great fit for blockchain RPC-based communications as it meant we could handle any cryptocurrency regardless of its data structure. MongoDB Atlas is fully managed so it’s zero DevOps resources to run, and it’s got an easy learning curve.”</p>
+                                <p>That last aspect was as important as the technical suitability. “Allocating developer bandwidth is completely crucial,” says Ankush. “If we’d stuck with Postgres, creating the new Trading Engine would have been three to four months. That wouldn’t have been survivable. With MongoDB we did it in 30 to 40 days.” And although he initially wasn’t sure MongoDB Atlas would be a long-term solution, its performance convinced him otherwise.</p>
+                                <p>“It scaled out as we needed, and it scaled back so gracefully. There are times when the market is slower, so it lets us track costs to market liquidity. It’s working really well for us.”</p>
+                                <p>It’s continued to free up developer bandwidth, too. “We started off with just the one product on MongoDB but we have eight or nine on it now. We wouldn’t have been able to concentrate on the mobile app, or provide historical data on demand to traders if our DevOps team didn’t find the database so easy to work with and with so many features.”</p>
+                                <p>And long lead times on new products aren’t an option in the cryptocurrency market. Over just 17 days in July, Koinex built out and launched a new service called Loop – a novel peer-to-peer digital token exchange system designed to deal with controversial regulatory moves by the Indian central bank. “Digital currencies are complex. Policies and technologies are changing all the time so our business often depends on being able build new features quickly, sometimes in just a few weeks. Not only does it have to be done fast but it has to be tested, robust and at scale. It’s a financial platform – you can’t compromise. Time we don’t spend managing the database is time we can spend on new features and products, and that’s a huge payback.”</p>
+                                <p>MongoDB also has the right security features to fit in with a financial exchange, says Ankush: “We have solid protocols limiting who in the company can see what data, with strong access controls, encryption and proper separation of production and development environments. We look to global best practices, and these are all implemented by default in the MongoDB Atlas service.”</p>
+                                <p>For a company barely a year old, Koinex has big plans for the future. “Koinex has been leading the digital asset revolution in India,” says Ankush. “We give users a world-class experience. The long-term plan is to have multiple digital asset management products available, not just cryptocurrencies. Whole new ecosystems are going to develop. With MongoDB Atlas, we’re going to be able to do all the things that other top exchanges do as well as add in our own extras and features.” </p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/digital-cryptocurrency-exchange-overcomes-scaling-challenges-with-mongodb-atlas" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/mongodb-atlas-data-explorer" class="reset"><h3 class="m-v-15">New to MongoDB Atlas — Data Explorer Now Available for All Cluster Sizes</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/ken-w.-alger">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/KenWAlger_HeadShot-2t0zvcp8g8.jpg&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/ken-w.-alger">Ken W. Alger</a></small><br /><small>September 18, 2018</small><br /><a href="/blog/category/release-notes"><small>Release Notes</small></a>, <a href="/blog/category/cloud"><small>Cloud</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>At the recent <a href="https://www.mongodb.com/local/chicago">MongoDB .local Chicago</a> event, MongoDB CTO and Co-Founder, <a href="https://www.twitter.com/eliothorowitz">Eliot Horowitz</a> made an exciting announcement about the Data Explorer feature of MongoDB Atlas. It is now available for all Atlas cluster sizes, including the free tier.
+
+                                    <h4>The easiest way to explore your data</h4>
+
+                                    <p>What is the Data Explorer? This powerful feature allows you to query, explore, and take action on your data residing inside MongoDB Atlas (with full CRUD functionality) right from your web browser. Of course, we've thought about security; Data Explorer access and whether or not a user can modify documents is tied to her role within the Atlas Project. Actions performed via the Data Explorer are also logged in the Atlas alerting window.
+
+                                        <p>Bringing this feature to the &quot;shared&quot; Atlas cluster sizes — the free M0s, M2s, and M5s — allows for even faster development. You can now perform actions on your data while developing your application, which is where these shared cluster sizes really shine.</p>
+                                    </p>
+                                    <p>Check out this short video to see the Data Explorer in action.</p>
+                                    <video width="640" height="480" controls>
+        <source src="https://webassets.mongodb.com/_com_assets/cms/data_explorer_1080v3-6qlv2d7a0j.mp4" type="video/mp4">
+    </video>
+
+
+
+                                    <div class='callout'>Atlas is the easiest and fasted way to get started with MongoDB. <a href="https://www.mongodb.com/cloud/atlas">Deploy a free cluster in minutes.</a></div>
+
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/mongodb-atlas-data-explorer" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                        <div class="relative p-h-20 p-t-30"><a href="/blog/post/recording-sensor-data-with-mongodb-stitch--electric-imp" class="reset"><h3 class="m-v-15">Recording sensor data with MongoDB Stitch &amp; Electric Imp</h3></a>
+                            <div class="fl fl-wrap fl-center-y">
+                                <div class="fl fl-wrap">
+                                    <a href="/blog/author/andrew-morgan">
+                                        <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Andrew Morgan Mug 2017-3654lkffrh.jpg&quot;); background-size: cover; background-position: center;"></div>
+                                    </a>
+                                </div>
+                                <div><small><a href="/blog/author/andrew-morgan">Andrew Morgan</a></small><br /><small>September 17, 2018</small><br /><a href="/blog/category/technical"><small>Technical</small></a>, <a href="/blog/category/cloud"><small>Cloud</small></a></div>
+                            </div>
+                            <div class="cms-content m-v-10 h-max-200 overflow-hidden">
+                                <p>Electric Imp devices and cloud services are a great way to get started with IoT. Electric Imp&#39;s MongoDB Stitch client library makes it a breeze to integrate with Stitch. This post describes how.</p>
+                            </div>
+                            <div class="box-shadow-top"></div><a href="/blog/post/recording-sensor-data-with-mongodb-stitch--electric-imp" class="reset"><button class="btn-green btn-small">Read More</button></a></div>
+                    </div>
+                </main>
+                <div class="m-v-40"></div>
+                <footer style="background-color: #1A1A1A; color: #fff;" class="p-v-30 w-full">
+                    <div class="w-max-1200 w-full m-auto">
+                        <div class="fl fl-justify-between fl-wrap">
+                            <div class="w-185 full-if-lt-900 m-20"><small><strong>Resources</strong></small>
+                                <ul>
+                                    <li class="m-v-10">
+                                        <a href="/nosql-explained" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>NoSQL Database Explained</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/lp/white-paper/architecture-guide" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>MongoDB Architecture Guide</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/products/mongodb-enterprise-advanced" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>MongoDB Enterprise Advanced</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/cloud/atlas" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>MongoDB Atlas</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/cloud/stitch" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>MongoDB Stitch</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//engineering.mongodb.com/" class="no-decor hover-underline" target="_BLANK">
+                                            <div class="fl fl-center-y"><small>MongoDB Engineering Blog</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//go.mongodb.com/referral-program-enrollment-a" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Referral Program</small></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-150 full-if-lt-900 m-20"><small><strong>Education &amp; Support</strong></small>
+                                <ul>
+                                    <li class="m-v-10">
+                                        <a href="//university.mongodb.com/courses/catalog" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>View Course Catalog</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//university.mongodb.com/courses/schedule" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>View Course Schedule</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//university.mongodb.com/public_training" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Public Training</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//university.mongodb.com/exams" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Certification</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//docs.mongodb.com/manual/" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>MongoDB Manual</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//docs.mongodb.com/manual/installation/" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Installation</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/faq" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>FAQ</small></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-300 full-if-lt-900 m-20"><small><strong>Popular Topics</strong></small>
+                                <ul>
+                                    <li class="m-v-10">
+                                        <a href="/blog/post/comparing-cloud-mongodb-services-mongodb-atlas-vs-mlab" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Comparing Cloud MongoDB Services: MongoDB Atlas vs mLab</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/blog/post/announcing-mongodb-stitch" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Announcing MongoDB Stitch: A Backend as a Service for MongoDB</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/blog/post/how-our-fintech-startup-migrated-to-mongodbs-database-as-a-service-to-save-time-and-money" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>How Our FinTech Startup Migrated to MongoDB’s Database-as-a-Service to Save Time and Money</small></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-100 full-if-lt-900 m-20"><small><strong>About</strong></small>
+                                <ul>
+                                    <li class="m-v-10">
+                                        <a href="/company" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>MongoDB, Inc.</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/careers" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Careers</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/contact" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Contact Us</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/legal/legal-notices" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Legal Notices</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/security" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Security Information</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/office-locations" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Office Locations</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="/community-code-of-conduct" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><small>Code of Conduct</small></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="w-120 full-if-lt-900 m-20"><small><strong>Follow Us</strong></small>
+                                <ul>
+                                    <li class="m-v-10">
+                                        <a href="//facebook.com/mongodb" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><svg width="18" class="m-r-10" viewBox="0 0 32 32"><path fill="white" d="M29 0h-26c-1.65 0-3 1.35-3 3v26c0 1.65 1.35 3 3 3h13v-14h-4v-4h4v-2c0-3.306 2.694-6 6-6h4v4h-4c-1.1 0-2 0.9-2 2v2h6l-1 4h-5v14h9c1.65 0 3-1.35 3-3v-26c0-1.65-1.35-3-3-3z"></path></svg><small>Facebook</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//github.com/mongodb" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><svg width="18" class="m-r-10" viewBox="0 0 32 32"><path fill="white" d="M16 0.395c-8.836 0-16 7.163-16 16 0 7.069 4.585 13.067 10.942 15.182 0.8 0.148 1.094-0.347 1.094-0.77 0-0.381-0.015-1.642-0.022-2.979-4.452 0.968-5.391-1.888-5.391-1.888-0.728-1.849-1.776-2.341-1.776-2.341-1.452-0.993 0.11-0.973 0.11-0.973 1.606 0.113 2.452 1.649 2.452 1.649 1.427 2.446 3.743 1.739 4.656 1.33 0.143-1.034 0.558-1.74 1.016-2.14-3.554-0.404-7.29-1.777-7.29-7.907 0-1.747 0.625-3.174 1.649-4.295-0.166-0.403-0.714-2.030 0.155-4.234 0 0 1.344-0.43 4.401 1.64 1.276-0.355 2.645-0.532 4.005-0.539 1.359 0.006 2.729 0.184 4.008 0.539 3.054-2.070 4.395-1.64 4.395-1.64 0.871 2.204 0.323 3.831 0.157 4.234 1.026 1.12 1.647 2.548 1.647 4.295 0 6.145-3.743 7.498-7.306 7.895 0.574 0.497 1.085 1.47 1.085 2.963 0 2.141-0.019 3.864-0.019 4.391 0 0.426 0.288 0.925 1.099 0.768 6.354-2.118 10.933-8.113 10.933-15.18 0-8.837-7.164-16-16-16z"></path></svg><small>Github</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//youtube.com/user/mongodb" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><svg width="18" class="m-r-10" viewBox="0 0 32 32"><path fill="white" d="M31.681 9.6c0 0-0.313-2.206-1.275-3.175-1.219-1.275-2.581-1.281-3.206-1.356-4.475-0.325-11.194-0.325-11.194-0.325h-0.012c0 0-6.719 0-11.194 0.325-0.625 0.075-1.987 0.081-3.206 1.356-0.963 0.969-1.269 3.175-1.269 3.175s-0.319 2.588-0.319 5.181v2.425c0 2.587 0.319 5.181 0.319 5.181s0.313 2.206 1.269 3.175c1.219 1.275 2.819 1.231 3.531 1.369 2.563 0.244 10.881 0.319 10.881 0.319s6.725-0.012 11.2-0.331c0.625-0.075 1.988-0.081 3.206-1.356 0.962-0.969 1.275-3.175 1.275-3.175s0.319-2.587 0.319-5.181v-2.425c-0.006-2.588-0.325-5.181-0.325-5.181zM12.694 20.15v-8.994l8.644 4.513-8.644 4.481z"></path></svg><small>Youtube</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//twitter.com/mongodb" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><svg width="18" class="m-r-10" viewBox="0 0 32 32"><path fill="white" d="M32 7.075c-1.175 0.525-2.444 0.875-3.769 1.031 1.356-0.813 2.394-2.1 2.887-3.631-1.269 0.75-2.675 1.3-4.169 1.594-1.2-1.275-2.906-2.069-4.794-2.069-3.625 0-6.563 2.938-6.563 6.563 0 0.512 0.056 1.012 0.169 1.494-5.456-0.275-10.294-2.888-13.531-6.862-0.563 0.969-0.887 2.1-0.887 3.3 0 2.275 1.156 4.287 2.919 5.463-1.075-0.031-2.087-0.331-2.975-0.819 0 0.025 0 0.056 0 0.081 0 3.181 2.263 5.838 5.269 6.437-0.55 0.15-1.131 0.231-1.731 0.231-0.425 0-0.831-0.044-1.237-0.119 0.838 2.606 3.263 4.506 6.131 4.563-2.25 1.762-5.075 2.813-8.156 2.813-0.531 0-1.050-0.031-1.569-0.094 2.913 1.869 6.362 2.95 10.069 2.95 12.075 0 18.681-10.006 18.681-18.681 0-0.287-0.006-0.569-0.019-0.85 1.281-0.919 2.394-2.075 3.275-3.394z"></path></svg><small>Twitter</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//www.linkedin.com/company/mongodbinc/" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><svg width="18" class="m-r-10" viewBox="0 0 32 32"><path fill="white" d="M29 0h-26c-1.65 0-3 1.35-3 3v26c0 1.65 1.35 3 3 3h26c1.65 0 3-1.35 3-3v-26c0-1.65-1.35-3-3-3zM12 26h-4v-14h4v14zM10 10c-1.106 0-2-0.894-2-2s0.894-2 2-2c1.106 0 2 0.894 2 2s-0.894 2-2 2zM26 26h-4v-8c0-1.106-0.894-2-2-2s-2 0.894-2 2v8h-4v-14h4v2.481c0.825-1.131 2.087-2.481 3.5-2.481 2.488 0 4.5 2.238 4.5 5v9z"></path></svg><small>LinkedIn</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//slackpass.io/mongo-db" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><svg width="18" class="m-r-10" viewBox="0 0 24 24"><path fill="white" d="M23 8.7c-1.3-4.2-2.8-6.6-5.1-7.8-2.1-1.2-5-1.2-9.2 0.1-8.1 2.4-10.2 6.3-7.7 14.3 1.8 6 4.4 8.7 8.9 8.7 1.6 0 3.3-0.3 5.4-0.9 8-2.5 10.2-6.4 7.7-14.4zM14.7 21.1c-7 2.1-9.7 0.6-11.8-6.4-2.1-6.9-0.6-9.7 6.4-11.8 2-0.6 3.6-0.9 4.9-0.9 1.1 0 2.1 0.2 2.9 0.6 1.7 0.9 3 3 4.1 6.6 0 0 0 0 0 0 2 7 0.5 9.8-6.5 11.9z"></path><path fill="white" d="M17.7 11.6l-1.9 0.7-1-2.8 1.9-0.7c0.5-0.2 0.8-0.7 0.6-1.3-0.2-0.5-0.7-0.8-1.3-0.6l-1.9 0.7-0.7-1.9c-0.2-0.5-0.7-0.8-1.3-0.6-0.5 0.2-0.8 0.7-0.6 1.3l0.7 1.9-2.8 1-0.6-2c-0.2-0.5-0.8-0.8-1.3-0.6-0.5 0.1-0.8 0.7-0.6 1.2l0.7 1.9-1.9 0.7c-0.5 0.2-0.8 0.7-0.6 1.3 0.1 0.4 0.5 0.7 0.9 0.7 0.1 0 0.2 0 0.3-0.1l1.9-0.7 1 2.8-1.9 0.7c-0.5 0.2-0.8 0.7-0.6 1.3 0.1 0.4 0.5 0.7 0.9 0.7 0.1 0 0.2 0 0.3-0.1l1.9-0.7 0.7 1.9c0.1 0.4 0.5 0.7 0.9 0.7 0.1 0 0.2 0 0.3-0.1 0.5-0.2 0.8-0.7 0.6-1.3l-0.7-1.9 2.8-1 0.7 1.9c0.1 0.4 0.5 0.7 0.9 0.7 0.1 0 0.2 0 0.3-0.1 0.5-0.2 0.8-0.7 0.6-1.3l-0.7-1.9 1.9-0.7c0.5-0.2 0.8-0.7 0.6-1.3 0.1-0.3-0.5-0.6-1-0.4zM11.1 13.9l-1-2.8 2.8-1 1 2.8-2.8 1z"></path></svg><small>Slack</small></div>
+                                        </a>
+                                    </li>
+                                    <li class="m-v-10">
+                                        <a href="//stackoverflow.com/tags/mongodb/info" class="no-decor hover-underline">
+                                            <div class="fl fl-center-y"><svg width="18" class="m-r-10" viewBox="0 0 32 32"><path fill="white" d="M32 20v12h-32v-12h4v8h24v-8zM6 22h20v4h-20zM6.473 17.671l0.866-3.905 19.526 4.328-0.866 3.905zM8.739 9.642l1.69-3.625 18.126 8.452-1.69 3.625zM30.991 11.296l-2.435 3.173-15.867-12.175 1.761-2.294h1.82z"></path></svg><small>StackOverflow</small></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="m-auto" style="border-bottom: 1px solid white; width: calc(100% - 40px);"></div>
+                        <div class="m-h-20 m-v-30 fl fl-wrap fl-justify-between">
+                            <div>
+                                <div class="w-max-80"></div><span class="hide-lt-910"><div class="w-max-600 fl fl-center-y"><svg height="45px" x="0px" y="0px" viewBox="0 0 298 663.3" style="enable-background:new 0 0 298 663.3;"><g><g transform="translate(-957.000000, -316.000000)"><g transform="translate(273.000000, 168.000000)"><g transform="translate(614.000000, 134.000000)"><g transform="translate(70.000000, 14.000000)"><path fill="#13AA52" d="M292.5,264C257.6,109.9,175,59.2,166.1,39.8c-9.8-13.7-19.6-37.9-19.6-37.9 c-0.2-0.4-0.4-1.1-0.7-1.8c-1,13.6-1.5,18.9-14.4,32.7c-20,15.6-122.7,101.8-131,277c-7.8,163.3,118,260.7,135.1,273.1l1.9,1.4 c4.9-11.2,9.8-43.1,13.2-86.8c0.8,35.3,5.8,73.1,23.3,81.1l1-0.7c2.8-1.9,10.9-7.8,21.7-17.8 C239.3,520.7,319.8,423.4,292.5,264z"></path><path fill="#ABABAB" d="M150.7,497.3c-3.4,43.7-8.4,75.5-13.2,86.7c0,0,5.4,38.5,9.1,79.3l13.3,0 c4.9-45.7,14.1-84.9,14.1-84.9C156.5,570.4,151.4,532.6,150.7,497.3z"></path><path fill="#13AA52" d="M292.5,264C257.6,109.9,175,59.2,166.1,39.8c-9.8-13.7-19.6-37.9-19.6-37.9 c8.3,32.3,6.9,290.1,7.8,321c2,64.6,0,126.6-3.8,174.5c0.8,35.3,5.8,73.1,23.3,81.1l1-0.7c2.8-1.9,10.9-7.8,21.7-17.8l0.8-0.7 C239.3,520.7,319.8,423.4,292.5,264z"></path><linearGradient id="Shape_1_" gradientUnits="userSpaceOnUse" x1="-232.3255" y1="2195.9507" x2="-232.3255" y2="2194.9333" gradientTransform="matrix(68.2258 0 0 -259.7151 16072.8818 570323.5)"><stop offset="0" style="stop-color:#13AA52;stop-opacity:0"></stop><stop offset="1" style="stop-color:#116149;stop-opacity:0.2"></stop></linearGradient><path fill="url(#Shape_1_)" d="M292.5,264C257.6,109.9,175,59.2,166.1,39.8c-9.8-13.7-19.6-37.9-19.6-37.9 c8.3,32.3,6.9,290.1,7.8,321c2,64.6,0,126.6-3.8,174.5c0.8,35.3,5.8,73.1,23.3,81.1l1-0.7c2.8-1.9,10.9-7.8,21.7-17.8l0.8-0.7 C239.3,520.7,319.8,423.4,292.5,264z"></path></g></g></g></g></g></svg><small class="m-l-10">© 2018 MongoDB, Inc.<br />Mongo, MongoDB, and the MongoDB leaf logo are registered trademarks of MongoDB, Inc.</small></div></span></div>
+                            <div class="relative full-if-lt-900"><small class="disp-block m-b-10"><strong>Get MongoDB Email Updates</strong></small>
+                                <form autoComplete="on"><input type="hidden" defaultValue="en" name="language" id="language" /><input type="hidden" defaultValue="Int_NL_NewsletterSignup-Dot-ComFooter_WW" name="elqFormName" id="elqFormName" /><input type="hidden" defaultValue="413370795" name="elqSiteID" id="elqSiteID" /><input type="hidden" defaultValue="0" name="elqCookieWrite" id="elqCookieWrite" /><input type="hidden" name="elqCustomerGUID" id="elqCustomerGUID" /><input type="hidden" name="db_company_name" id="db_company_name" /><input type="hidden" name="db_demandbase_sid" id="db_demandbase_sid" /><input type="hidden" name="db_marketing_alias" id="db_marketing_alias" /><input type="hidden" name="db_industry" id="db_industry" /><input type="hidden" name="db_sub_industry" id="db_sub_industry" /><input type="hidden" name="db_employee_count" id="db_employee_count" /><input type="hidden" name="db_primary_sic" id="db_primary_sic" /><input type="hidden" name="db_street_address" id="db_street_address" /><input type="hidden" name="db_city" id="db_city" /><input type="hidden" name="db_state" id="db_state" /><input type="hidden" name="db_zip" id="db_zip" /><input type="hidden" name="db_country" id="db_country" /><input type="hidden" name="db_country_name" id="db_country_name" /><input type="hidden" name="db_phone" id="db_phone" /><input type="hidden" name="db_stock_ticker" id="db_stock_ticker" /><input type="hidden" name="db_web_site" id="db_web_site" /><input type="hidden" name="db_annual_sales" id="db_annual_sales" /><input type="hidden" name="db_revenue_range" id="db_revenue_range" /><input type="hidden" name="db_employee_range" id="db_employee_range" /><input type="hidden" name="db_b2b" id="db_b2b" /><input type="hidden" name="db_b2c" id="db_b2c" /><input type="hidden" name="db_traffic" id="db_traffic" /><input type="hidden" name="db_latitude" id="db_latitude" /><input type="hidden" name="db_longitude" id="db_longitude" /><input type="hidden" name="db_fortune_1000" id="db_fortune_1000" /><input type="hidden" name="db_forbes_2000" id="db_forbes_2000" /><input type="hidden" name="ip_address" id="ip_address" /><input type="hidden" name="jump_id" id="jump_id" /><input required id="email" name="email" autoComplete="email" style="border: 0px; padding: 9px 16px; outline: none;" type="email" class="radius w-220" placeholder="Email Address" /><input type="submit" class="btn-green m-l-10 p-h-5" value="→" /></form>
+                            </div>
+                        </div>
+                        <div class="m-20 hide-gt-910">
+                            <div class="w-max-600 fl fl-center-y"><svg height="45px" x="0px" y="0px" viewBox="0 0 298 663.3" style="enable-background:new 0 0 298 663.3;"><g><g transform="translate(-957.000000, -316.000000)"><g transform="translate(273.000000, 168.000000)"><g transform="translate(614.000000, 134.000000)"><g transform="translate(70.000000, 14.000000)"><path fill="#13AA52" d="M292.5,264C257.6,109.9,175,59.2,166.1,39.8c-9.8-13.7-19.6-37.9-19.6-37.9 c-0.2-0.4-0.4-1.1-0.7-1.8c-1,13.6-1.5,18.9-14.4,32.7c-20,15.6-122.7,101.8-131,277c-7.8,163.3,118,260.7,135.1,273.1l1.9,1.4 c4.9-11.2,9.8-43.1,13.2-86.8c0.8,35.3,5.8,73.1,23.3,81.1l1-0.7c2.8-1.9,10.9-7.8,21.7-17.8 C239.3,520.7,319.8,423.4,292.5,264z"></path><path fill="#ABABAB" d="M150.7,497.3c-3.4,43.7-8.4,75.5-13.2,86.7c0,0,5.4,38.5,9.1,79.3l13.3,0 c4.9-45.7,14.1-84.9,14.1-84.9C156.5,570.4,151.4,532.6,150.7,497.3z"></path><path fill="#13AA52" d="M292.5,264C257.6,109.9,175,59.2,166.1,39.8c-9.8-13.7-19.6-37.9-19.6-37.9 c8.3,32.3,6.9,290.1,7.8,321c2,64.6,0,126.6-3.8,174.5c0.8,35.3,5.8,73.1,23.3,81.1l1-0.7c2.8-1.9,10.9-7.8,21.7-17.8l0.8-0.7 C239.3,520.7,319.8,423.4,292.5,264z"></path><linearGradient id="Shape_1_" gradientUnits="userSpaceOnUse" x1="-232.3255" y1="2195.9507" x2="-232.3255" y2="2194.9333" gradientTransform="matrix(68.2258 0 0 -259.7151 16072.8818 570323.5)"><stop offset="0" style="stop-color:#13AA52;stop-opacity:0"></stop><stop offset="1" style="stop-color:#116149;stop-opacity:0.2"></stop></linearGradient><path fill="url(#Shape_1_)" d="M292.5,264C257.6,109.9,175,59.2,166.1,39.8c-9.8-13.7-19.6-37.9-19.6-37.9 c8.3,32.3,6.9,290.1,7.8,321c2,64.6,0,126.6-3.8,174.5c0.8,35.3,5.8,73.1,23.3,81.1l1-0.7c2.8-1.9,10.9-7.8,21.7-17.8l0.8-0.7 C239.3,520.7,319.8,423.4,292.5,264z"></path></g></g></g></g></g></svg><small class="m-l-10">© 2018 MongoDB, Inc.<br />Mongo, MongoDB, and the MongoDB leaf logo are registered trademarks of MongoDB, Inc.</small></div>
+                        </div>
+                    </div>
+                </footer>
             </div>
-        </header>
+        </div>
 
-        <main class="wrapper wrapper--large wrapper--main">
-            {% block content %}{% endblock %}
-        </main>
-
-        <footer class="footer">
-            <div class="footer__inner wrapper wrapper--large">
-                <div class="footer__nav-container">
-                    {% if settings.utils.SocialMediaSettings.twitter_handle or settings.utils.SocialMediaSettings.facebook_app_id %}
-                        <section class="footer__social-links">
-                            <h5 class="footer__heading">Follow us:</h5>
-                            {% if settings.utils.SocialMediaSettings.twitter_handle %}
-                                <a href="https://twitter.com/{{ settings.utils.SocialMediaSettings.twitter_handle }}">
-                                    <svg class="icon icon--footer-social"><use xlink:href="#twitter"></use></svg>
-                                </a>
-                            {% endif %}
-                            {% if settings.utils.SocialMediaSettings.facebook_app_id %}
-                                <a href="https://www.facebook.com/{{ settings.utils.SocialMediaSettings.facebook_app_id }}">
-                                    <svg class="icon icon--footer-social"><use xlink:href="#facebook"></use></svg>
-                                </a>
-                            {% endif %}
-                        </section>
-                    {% endif %}
-
-                    <section>
-                        {% footernav %}
-                    </section>
-
-                    <section>
-                        {% footerlinks %}
-                    </section>
-                </div>
-
-                <div class="footer__credit" role="contentinfo">
-                    {% if COPYRIGHT %}
-                        <p>© {% now "Y" %} {{ COPYRIGHT }}</p>
-                    {% endif %}
-                    <div>Site by <a href="https://torchbox.com/">Torchbox</a></div>
-                </div>
-            </div>
-        </footer>
 
         {% include "includes/cookie-message.html" %}
 
