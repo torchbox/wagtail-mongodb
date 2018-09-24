@@ -1,11 +1,15 @@
+from django import forms
 from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from django.db.models.functions import Coalesce
-
-from modelcluster.fields import ParentalKey
-from wagtail.admin.edit_handlers import (FieldPanel, InlinePanel,
-                                         StreamFieldPanel)
+from django.utils.text import slugify
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from wagtail.admin.edit_handlers import (
+    FieldPanel,
+    InlinePanel,
+    StreamFieldPanel,
+)
 from wagtail.core.fields import StreamField
 from wagtail.search import index
 
@@ -47,9 +51,6 @@ class NewsPageRelatedPage(RelatedPage):
 
 
 class NewsPage(BasePage):
-    subpage_types = []
-    parent_page_types = ['NewsIndex']
-
     # It's datetime for easy comparison with first_published_at
     publication_date = models.DateTimeField(
         null=True, blank=True,
@@ -58,6 +59,11 @@ class NewsPage(BasePage):
     )
     introduction = models.TextField(blank=True)
     body = StreamField(StoryBlock())
+
+    categories = ParentalManyToManyField(
+        'news.Category',
+        related_name='news_pages',
+    )
 
     search_fields = BasePage.search_fields + [
         index.SearchField('introduction'),
@@ -68,9 +74,13 @@ class NewsPage(BasePage):
         FieldPanel('publication_date'),
         FieldPanel('introduction'),
         StreamFieldPanel('body'),
+        FieldPanel('categories', widget=forms.CheckboxSelectMultiple),
         InlinePanel('news_types', label="News types"),
         InlinePanel('related_pages', label="Related pages"),
     ]
+
+    subpage_types = []
+    parent_page_types = ['NewsIndex']
 
     @property
     def display_date(self):
@@ -111,3 +121,27 @@ class NewsIndex(BasePage):
             ).distinct().order_by('news_type__title')
         )
         return context
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(
+        blank=True,
+        max_length=255,
+        help_text=(
+            "Populated from name if not populated. Note: Changing this will "
+            "change the tag taxonomy URL."
+        ),
+    )
+
+    class Meta:
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+
+        super().save(*args, **kwargs)
