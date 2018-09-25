@@ -1,6 +1,7 @@
 version: '3'
 
 services:
+
   db:
     image: postgres
     environment:
@@ -10,8 +11,8 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.dev
-    command: ./bin/wait-for-postgres -- python manage.py runserver 0.0.0.0:8000
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
     environment:
       - ALLOWED_HOSTS=web,localhost
       - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
@@ -24,21 +25,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-  fe:
-    build:
-      context: .
-      dockerfile: Dockerfile.fe
-    command: npm start
-    environment:
-      - NODE_ENV=development
-    volumes:
-      - .:/app
-      - node_modules:/app/monbodb_blog/static_src/node_modules
-    ports:
-      - "3000:3000"
-    depends_on:
-      - web
 
 volumes:
   pgdata:
-  node_modules:
