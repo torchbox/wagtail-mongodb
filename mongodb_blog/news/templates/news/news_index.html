@@ -1,7 +1,13 @@
-{% extends "base.html" %}
+{% extends "news/news_base.html" %}
 {% load wagtailcore_tags wagtailimages_tags static %}
 
-{% block content %}
+{% block news_content %}
+{% for post in news %}
+    {% include "news/news_listitem.html" %}
+{% endfor %}
+{% endblock news_content %}
+
+{% block other_content %}
 <div class="wrapper wrapper--flex">
     <section class="section section--main">
         <h1>{{ page.title }}</h1>

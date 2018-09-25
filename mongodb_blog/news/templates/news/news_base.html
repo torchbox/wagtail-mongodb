@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block content %}
+<header class="relative fl fl-center fl-column h-350">
+    <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;{% static "images/header.png" %}&quot;); opacity: 1;"></div>
+    <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;&quot;); opacity: 0;"></div>
+    <div class="header-mask absolute top left w-full h-full" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+    <h1 class="relative white w-max-800 m-h-20 m-v-5 p-t-50 txt-center ">GIANT Stories at MongoDB</h1>
+    <a href="/newsletter/blog-digest"><button class="relative btn-green m-5">Subscribe</button></a>
+</header>
+
+<main class="relative w-max-650 h-min-700 m-auto">
+    <div class="w-full">
+        <aside class="absolute hide-lt-1140 w-full m-v-40 p-h-10 bg-white" style="max-width: 310px; margin-left: -300px;"><input class="input-main disp-block m-v-10" type="text" placeholder="Search all blog posts" style="width: 80%; margin-left: 3px;" /><a href="/blog/category/release-notes"><button class="btn-gray no-shadow btn-small m-2">Release Notes</button></a><a href="/blog/category/emerging-technology"><button class="btn-gray no-shadow btn-small m-2">Emerging Technology</button></a><a href="/blog/category/community"><button class="btn-gray no-shadow btn-small m-2">Community</button></a><a href="/blog/category/customer-stories"><button class="btn-gray no-shadow btn-small m-2">Customer Stories</button></a><a href="/blog/category/business"><button class="btn-gray no-shadow btn-small m-2">Business</button></a><a href="/blog/category/technical"><button class="btn-gray no-shadow btn-small m-2">Technical</button></a><a href="/blog/category/cloud"><button class="btn-gray no-shadow btn-small m-2">Cloud</button></a><a href="/blog/category/events"><button class="btn-gray no-shadow btn-small m-2">Events</button></a><a href="/blog/category/company"><button class="btn-gray no-shadow btn-small m-2">Company</button></a><a href="/blog/category/aws-re:invent-2017"><button class="btn-gray no-shadow btn-small m-2">AWS re:Invent 2017</button></a><a href="/blog/category/mongodb-3.6"><button class="btn-gray no-shadow btn-small m-2">MongoDB 3.6</button></a><a href="/blog/category/culture"><button class="btn-gray no-shadow btn-small m-2">Culture</button></a><a href="/blog/category/mongodb-4.0"><button class="btn-gray no-shadow btn-small m-2">MongoDB 4.0</button></a>
+            <div class="m-v-10"></div>
+            <div hidden class="m-v-30" style="opacity: 0; transition: 300ms;"></div>
+            <div class="fixed bottom m-b-20"></div>
+        </aside>
+    </div>
+    <div class="absolute right hide-lt-1260 w-max-300 w-full m-v-30 p-l-20" style="margin-right: -300px;">
+        <aside>
+            <div>
+                <h6>Sign up for our monthly blog digest</h6>
+                <div class="form-error"></div>
+                <div hidden><small>Thanks for subscribing to the newsletter. This is your channel for getting the latest notifications of server and driver releases, details on local MongoDB events, updates on education programs, and the skinny on all things MongoDB.</small></div>
+                <form autoComplete="on"><input type="hidden" defaultValue="en" name="language" id="language" /><input type="hidden" defaultValue="Int_NL_NewsletterSignup-Blogson.com/.org_WW" name="elqFormName" id="elqFormName" /><input type="hidden" defaultValue="413370795" name="elqSiteID" id="elqSiteID" /><input type="hidden" defaultValue="0" name="elqCookieWrite" id="elqCookieWrite" /><input type="hidden" name="elqCustomerGUID" id="elqCustomerGUID" /><input type="hidden" name="db_company_name" id="db_company_name" /><input type="hidden" name="db_demandbase_sid" id="db_demandbase_sid" /><input type="hidden" name="db_marketing_alias" id="db_marketing_alias" /><input type="hidden" name="db_industry" id="db_industry" /><input type="hidden" name="db_sub_industry" id="db_sub_industry" /><input type="hidden" name="db_employee_count" id="db_employee_count" /><input type="hidden" name="db_primary_sic" id="db_primary_sic" /><input type="hidden" name="db_street_address" id="db_street_address" /><input type="hidden" name="db_city" id="db_city" /><input type="hidden" name="db_state" id="db_state" /><input type="hidden" name="db_zip" id="db_zip" /><input type="hidden" name="db_country" id="db_country" /><input type="hidden" name="db_country_name" id="db_country_name" /><input type="hidden" name="db_phone" id="db_phone" /><input type="hidden" name="db_stock_ticker" id="db_stock_ticker" /><input type="hidden" name="db_web_site" id="db_web_site" /><input type="hidden" name="db_annual_sales" id="db_annual_sales" /><input type="hidden" name="db_revenue_range" id="db_revenue_range" /><input type="hidden" name="db_employee_range" id="db_employee_range" /><input type="hidden" name="db_b2b" id="db_b2b" /><input type="hidden" name="db_b2c" id="db_b2c" /><input type="hidden" name="db_traffic" id="db_traffic" /><input type="hidden" name="db_latitude" id="db_latitude" /><input type="hidden" name="db_longitude" id="db_longitude" /><input type="hidden" name="db_fortune_1000" id="db_fortune_1000" /><input type="hidden" name="db_forbes_2000" id="db_forbes_2000" /><input type="hidden" name="ip_address" id="ip_address" /><input type="hidden" name="jump_id" id="jump_id" /><input required id="name" class="input-main disp-block w-three-quarter m-0 m-v-10" name="name" type="text" placeholder="Name" autoComplete="name" /><input required id="email" class="input-main disp-block w-three-quarter m-0 m-v-10" name="email" type="email" placeholder="Email Address" autoComplete="email" /><input type="submit" value="Submit" class="btn-green btn-small" /></form>
+            </div>
+            <div class="m-v-30">
+                <div class="fl fl-center"><svg class="p-r-10 w-85" viewBox="0 0 50 40"><g fill="none" fill-rule="evenodd"><g transform="translate(-864 -1325)" stroke="#69B342" stroke-width="2"><g transform="translate(865 1283)"><g transform="translate(0 43)"><g transform="translate(0 .16667)"><g><path d="m47.958 33.375c0 2.3-1.8646 4.1667-4.1667 4.1667h-39.583c-2.3 0-4.1667-1.8667-4.1667-4.1667v-29.167c0-2.3 1.8667-4.1667 4.1667-4.1667h39.583c2.3021 0 4.1667 1.8667 4.1667 4.1667v29.167z"></path><path d="m0.041667 10h47.917"></path><circle cx="7.3333" cy="5.25" r="1.0417"></circle><ellipse cx="13.583" cy="5.25" rx="1.0417" ry="1.0417"></ellipse><ellipse cx="19.833" cy="5.25" rx="1.0417" ry="1.0417"></ellipse><polyline points="10.458 18.792 15.667 24 10.458 29.208"></polyline><path d="m22.958 25h8.3333"></path></g></g></g></g></g></g></svg>
+                    <h4 class="m-0">The MongoDB Engineering Journal</h4></div>
+                <p>A tech blog for builders, by builders</p><a href="https://engineering.mongodb.com"><button class="btn-green btn-small">View Now</button></a></div>
+            <div id="div-gpt-ad-1501783583142-0" style="transform: scale(0.8) translate(-12.5%, 0);" class="h-250 w-max-280"></div>
+        </aside>
+    </div>
+    <div class="overflow-hidden">
+        {% block news_content %}
+        {% endblock news_content %}
+    </div>
+</main>
+{% endblock content %}

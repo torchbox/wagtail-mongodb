@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # first - http://help.apm.scoutapp.com/#django.
     'scout_apm.django',
 
+    'mongodb_blog.blog',
     'mongodb_blog.documents',
     'mongodb_blog.esi',
     'mongodb_blog.forms',
@@ -69,6 +70,7 @@ INSTALLED_APPS = [
     'wagtail.contrib.search_promotions',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
+    'wagtail.contrib.routable_page',
     'wagtail.embeds',
     'wagtail.sites',
     'wagtail.users',
