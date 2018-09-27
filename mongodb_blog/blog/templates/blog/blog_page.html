@@ -17,10 +17,6 @@
 <div class="relative p-h-20 p-v-30">
     {% include "blog/blog_meta.html" with post=page index_page=page.get_parent.specific %}
 
-    <div class="m-t-20 hide-gt-1140">
-        {% include "blog/share_btns.html"%}
-    </div>
-
     <div class="cms-content">
         {% for block in page.body %}
             {% if block.block_type == 'heading' %}
@@ -39,10 +35,6 @@
         <button class="absolute bottom left w-45 h-45" style="margin: 8px 4px; border: 0px; border-radius: 100%; background-color: rgb(19, 170, 82); transition: all 300ms ease 0s; transform: translate3d(0px, 0px, 0px); opacity: 1;">
             <img class="absolute top left w-30 h-30" style="margin: 7px;" src="/blog/assets/share.svg">
         </button>
-
-        <div style="position: relative; transition: all 300ms ease 0s; transform: translate3d(0px, 50px, 0px); opacity: 0;">
-            {% include "blog/share_btns.html"%}
-        </div>
     </div>
 </div>
 {% endblock blog_content %}
