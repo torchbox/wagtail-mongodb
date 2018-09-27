@@ -7,7 +7,6 @@ from wagtail.snippets.blocks import SnippetChooserBlock
 
 class ImageBlock(blocks.StructBlock):
     image = ImageChooserBlock()
-    caption = blocks.CharBlock(required=False)
 
     class Meta:
         icon = "image"
@@ -35,7 +34,13 @@ class QuoteBlock(blocks.StructBlock):
 # Main streamfield block to be inherited by Pages
 class StoryBlock(blocks.StreamBlock):
     heading = blocks.CharBlock(classname="full title", icon='title')
-    paragraph = blocks.RichTextBlock()
+    paragraph = blocks.RichTextBlock(
+        features=[
+            'bold', 'italic',
+            'ul', 'ol', 'hr',
+            'link', 'document-link'
+        ],
+    )
     image = ImageBlock()
     quote = QuoteBlock()
     embed = EmbedBlock()

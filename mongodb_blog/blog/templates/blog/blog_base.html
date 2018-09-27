@@ -3,6 +3,7 @@
 {% load staticfiles %}
 
 {% block content %}
+{% block blog_header %}
 <header class="relative fl fl-center fl-column h-350">
     <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;{% static "images/header.png" %}&quot;); opacity: 1;"></div>
     <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;&quot;); opacity: 0;"></div>
@@ -10,6 +11,7 @@
     <h1 class="relative white w-max-800 m-h-20 m-v-5 p-t-50 txt-center ">GIANT Stories at MongoDB</h1>
     <a href="/newsletter/blog-digest"><button class="relative btn-green m-5">Subscribe</button></a>
 </header>
+{% endblock blog_header %}
 
 <main class="relative w-max-650 h-min-700 m-auto">
     <div class="w-full">

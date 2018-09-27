@@ -1,21 +1,53 @@
-{% extends "base.html" %}
-{% load wagtailcore_tags wagtailimages_tags static %}
+{% extends "blog/blog_base.html" %}
+{% load wagtailcore_tags staticfiles %}
 
-{% block content %}
-<div class="wrapper wrapper--small">
+{% block blog_header %}
+<header class="relative fl fl-center fl-column h-350">
+    <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;{% static "images/LP-40-2v9462awrw.png" %}&quot;); opacity: 1;"></div>
+    <div class="header-bg absolute top left w-full h-full" style="background-image: url(&quot;&quot;); opacity: 0;"></div>
+    <div class="header-mask absolute top left w-full h-full" style="background-color: rgba(0, 0, 0, 0.5);"></div>
+    <h1 class="relative white w-max-800 m-h-20 m-v-5 p-t-50 txt-center font-35 font-mobile-30">{{ page.title }}</h1>
+    <a href="https://www.mongodb.com/cloud/atlas">
+        <button class="relative btn-green m-5">Get started with a free database cluster in minutes</button>
+    </a>
+</header>
+{% endblock blog_header %}
 
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.display_date }}</p>
-    <p>{{ page.introduction }}</p>
+{% block blog_content %}
+<div class="relative p-h-20 p-v-30">
+    <div class="fl fl-wrap fl-center-y">
+        <div class="fl fl-wrap">
+            <a href="/blog/author/aydrian-howard" class="">
+                <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Screen Shot 2018-07-16 at 12.59.08 PM-qwonqaewep.png&quot;); background-size: cover; background-position: center center;"></div>
+            </a>
+        </div>
+        <div><small><a href="/blog/author/aydrian-howard" class="">Aydrian Howard</a></small><br><small>September 25, 2018</small><br><a href="/blog/category/mongodb" class=""><small>mongodb</small></a></div>
+    </div>
+    <div class="m-t-20 hide-gt-1140">
+        {% include "blog/share_btns.html"%}
+    </div>
+    <div class="cms-content">
+        {% for block in page.body %}
+            {% if block.block_type == 'heading' %}
+                <h4 style="margin-top: 30px;">{{ block.value }}</h4>
+            {% else %}
+                {% include_block block %}
+            {% endif %}
+        {% endfor %}
+    </div>
+    {% comment Disqus %}
+    <div class="p-v-20" id="disqus_thread"></div>
+    <noscript>Please enable JavaScript to view the<a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+    {% endcomment %}
 
-    <section class="main-body">
-        {% include_block page.body %}
-    </section>
+    <div class="fixed bottom left m-10" style="transition: opacity 500ms ease 0s; opacity: 0; visibility: hidden;">
+        <button class="absolute bottom left w-45 h-45" style="margin: 8px 4px; border: 0px; border-radius: 100%; background-color: rgb(19, 170, 82); transition: all 300ms ease 0s; transform: translate3d(0px, 0px, 0px); opacity: 1;">
+            <img class="absolute top left w-30 h-30" style="margin: 7px;" src="/blog/assets/share.svg">
+        </button>
 
-    {% include "includes/share.html" %}
-
+        <div style="position: relative; transition: all 300ms ease 0s; transform: translate3d(0px, 50px, 0px); opacity: 0;">
+            {% include "blog/share_btns.html"%}
+        </div>
+    </div>
 </div>
-
-{% include "includes/relatedcontent.html" with related_documents=page.related_documents.all related_pages=page.related_pages.all %}
-
-{% endblock %}
+{% endblock blog_content %}
