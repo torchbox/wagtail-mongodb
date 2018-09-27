@@ -1,5 +1,5 @@
-Django==2.0.3
-wagtail==2.0
+Django<2.1
+wagtail==2.2.2
 psycopg2==2.7.3.2
 django-extensions==1.9.9
 Werkzeug==0.11.11
