@@ -1,0 +1,8 @@
+{% extends "blog/blog_base.html" %}
+{% load wagtailcore_tags wagtailimages_tags static %}
+
+{% block blog_content %}
+{% for post in posts %}
+    {% include "blog/blog_listitem.html" %}
+{% endfor %}
+{% endblock blog_content %}
