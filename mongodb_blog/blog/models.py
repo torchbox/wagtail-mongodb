@@ -96,6 +96,11 @@ class BlogIndex(RoutablePageMixin, BasePage):
         # TODO: Implement
         return super().serve(request)
 
+    @route(r'^author/(?P<author>[\w-]+)/$')
+    def author(self, request, author):
+        # TODO: Implement
+        return super().serve(request)
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)

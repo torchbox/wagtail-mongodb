@@ -1,0 +1,19 @@
+{% load wagtailimages_tags wagtailroutablepage_tags %}
+
+{% with author=post.author %}
+<div class="fl fl-wrap fl-center-y">
+    <div class="fl fl-wrap">
+        {% image author.photo min-300x300 as author_photo %}
+        <a href="{% routablepageurl index_page "author" author=author.slug %}">
+            <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;{{ author_photo.url }}&quot;); background-size: cover; background-position: center;"></div>
+        </a>
+    </div>
+    <div>
+        <small><a href="{% routablepageurl index_page "author" author=author.slug %}">{{ author.name }}</a></small><br />
+        <small>{{ post.display_date|date:"F j, Y" }}</small><br />
+        {% for category in post.categories.all %}
+        <a href="{% routablepageurl index_page "category" category=category.slug %}"><small>{{ category.name }}</small></a>{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endwith %}

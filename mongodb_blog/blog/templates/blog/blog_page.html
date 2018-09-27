@@ -15,17 +15,12 @@
 
 {% block blog_content %}
 <div class="relative p-h-20 p-v-30">
-    <div class="fl fl-wrap fl-center-y">
-        <div class="fl fl-wrap">
-            <a href="/blog/author/aydrian-howard" class="">
-                <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Screen Shot 2018-07-16 at 12.59.08 PM-qwonqaewep.png&quot;); background-size: cover; background-position: center center;"></div>
-            </a>
-        </div>
-        <div><small><a href="/blog/author/aydrian-howard" class="">Aydrian Howard</a></small><br><small>September 25, 2018</small><br><a href="/blog/category/mongodb" class=""><small>mongodb</small></a></div>
-    </div>
+    {% include "blog/blog_meta.html" with post=page index_page=page.get_parent.specific %}
+
     <div class="m-t-20 hide-gt-1140">
         {% include "blog/share_btns.html"%}
     </div>
+
     <div class="cms-content">
         {% for block in page.body %}
             {% if block.block_type == 'heading' %}

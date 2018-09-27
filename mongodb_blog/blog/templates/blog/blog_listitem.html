@@ -4,21 +4,9 @@
     <a href="{% pageurl post %}" class="reset">
         <h3 class="m-v-15">{{ post.listing_title|default:post.title }}</h3>
     </a>
-    <div class="fl fl-wrap fl-center-y">
-        <div class="fl fl-wrap">
-            {# TODO Add author #}
-            <a href="/blog/author/robert-walters">
-                <div class="relative circle m-r-10 w-50 h-50" style="background-image: url(&quot;https://webassets.mongodb.com/_com_assets/cms/Screen Shot 2018-09-10 at 2.21.42 PM-re401vyrzm.png&quot;); background-size: cover; background-position: center;"></div>
-            </a>
-        </div>
-        <div>
-            <small><a href="/blog/author/robert-walters">Robert Walters</a></small><br />
-            <small>{{ post.display_date|date:"F j, Y" }}</small><br />
-            {% for category in post.categories.all %}
-            <a href="{% routablepageurl page "category" category=category.slug %}"><small>{{ category.name }}</small></a>{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </div>
-    </div>
+
+    {% include "blog/blog_meta.html" with index_page=page %}
+
     <div class="cms-content m-v-10 h-max-200 overflow-hidden">
         {% if post.listing_summary or post.introduction %}
             <p>{{ post.listing_summary|default:post.introduction }}</p>
