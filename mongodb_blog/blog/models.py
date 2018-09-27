@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
 from django.db.models.functions import Coalesce
+from django.http import Http404
 from django.utils.text import slugify
 from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
@@ -68,11 +69,20 @@ class BlogIndex(RoutablePageMixin, BasePage):
     parent_page_types = ['home.HomePage']
 
     def get_context(self, request, *args, **kwargs):
+        filter_kwargs = {}
+
+        if self.category:
+            filter_kwargs['categories'] = self.category
+
+        if self.author:
+            filter_kwargs['author'] = self.author
+
         posts = (
             BlogPage.objects
             .live()
             .public()
             .descendant_of(self)
+            .filter(**filter_kwargs)
             .annotate(date=Coalesce('publication_date', 'first_published_at'))
             .order_by('-date')
         )
@@ -91,15 +101,27 @@ class BlogIndex(RoutablePageMixin, BasePage):
         context['posts'] = posts
         return context
 
+    def serve(self, *args, **kwargs):
+        self.category = kwargs.pop('category', None)
+        self.author = kwargs.pop('author', None)
+
+        return super().serve(*args, **kwargs)
+
     @route(r'^category/(?P<category>[\w-]+)/$')
     def category(self, request, category):
-        # TODO: Implement
-        return super().serve(request)
+        try:
+            category = Category.objects.get(slug=category)
+        except Category.DoesNotExist:
+            raise Http404
+        return self.serve(request, category=category)
 
     @route(r'^author/(?P<author>[\w-]+)/$')
     def author(self, request, author):
-        # TODO: Implement
-        return super().serve(request)
+        try:
+            author = Author.objects.get(slug=author)
+        except Author.DoesNotExist:
+            raise Http404
+        return self.serve(request, author=author)
 
 
 class Category(models.Model):
