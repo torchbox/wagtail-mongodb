@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'captcha',
     'wagtailcaptcha',
+    'wagtailcodeblock',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -627,3 +628,6 @@ ENABLE_STYLEGUIDE = False
 # After you add favicon.ico file, please add its path relative to the static
 # directory here so it can be served at /favicon.ico.
 # FAVICON_STATIC_PATH = 'img/favicon.ico'
+
+# Wagtail Code Block
+WAGTAIL_CODE_BLOCK_THEME = 'okaidia'

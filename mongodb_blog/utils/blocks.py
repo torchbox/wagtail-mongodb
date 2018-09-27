@@ -3,6 +3,7 @@ from wagtail.documents.blocks import DocumentChooserBlock
 from wagtail.embeds.blocks import EmbedBlock
 from wagtail.images.blocks import ImageChooserBlock
 from wagtail.snippets.blocks import SnippetChooserBlock
+from wagtailcodeblock.blocks import CodeBlock
 
 
 class ImageBlock(blocks.StructBlock):
@@ -50,6 +51,7 @@ class StoryBlock(blocks.StreamBlock):
         template="blocks/call_to_action_block.html"
     )
     document = DocumentBlock()
+    code = CodeBlock()
 
     class Meta:
         template = "blocks/stream_block.html"
