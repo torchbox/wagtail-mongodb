@@ -6,3 +6,26 @@
     {% include "blog/blog_listitem.html" %}
 {% endfor %}
 {% endblock blog_content %}
+
+{% block blog_main %}
+{{ block.super }}
+<div class="fl fl-center fl-wrap m-auto m-v-40">
+    {% if posts.has_previous %}
+        <a class="m-2 btn-gray btn-small no-shadow" href="?page={{ posts.previous_page_number }}">
+            <span class="icon-arrow-left"></span>
+        </a>
+    {% endif %}
+
+    {% for page_number in posts.paginator.page_range %}
+    <a class="m-2 btn-gray btn-small no-shadow{% if posts.number == page_number %} btn-green{% endif %}" href="?page={{ page_number }}">
+        {{ page_number }}
+    </a>
+    {% endfor %}
+
+    {% if posts.has_next %}
+        <a class="m-2 btn-gray btn-small no-shadow" href="?page={{ posts.next_page_number }}">
+            <span class="icon-arrow-right"></span>
+        </a>
+    {% endif %}
+</div>
+{% endblock blog_main %}

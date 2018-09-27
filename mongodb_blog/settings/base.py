@@ -617,7 +617,7 @@ PASSWORD_REQUIRED_TEMPLATE = 'password_required.html'
 
 
 # Default size of the pagination used on the front-end.
-DEFAULT_PER_PAGE = 20
+DEFAULT_PER_PAGE = 9
 
 ESI_ENABLED = False
 

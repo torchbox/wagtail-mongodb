@@ -77,6 +77,8 @@ class BlogIndex(RoutablePageMixin, BasePage):
             .order_by('-date')
         )
 
+        posts = list(posts) * 50
+
         # Pagination
         page = request.GET.get('page', 1)
         paginator = Paginator(posts, settings.DEFAULT_PER_PAGE)
