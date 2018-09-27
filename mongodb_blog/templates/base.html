@@ -7,6 +7,9 @@
         <meta name="description" content="{% if page.search_description %}{{ page.search_description }}{% else %}{{ page.listing_summary }}{% endif %}" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+        {# Prevent site indexing #}
+        <meta name="robots" content="noindex">
+
         {% if GOOGLE_TAG_MANAGER_ID %}
             {# To enable GTM code you need to specify GOOGLE_TAG_MANAGER_ID in production.py or in local.py #}
             <!-- Google Tag Manager -->
