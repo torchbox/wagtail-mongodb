@@ -8,7 +8,10 @@ from modelcluster.fields import ParentalManyToManyField
 from wagtail.admin.edit_handlers import FieldPanel, StreamFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, route
 from wagtail.core.fields import StreamField
+from wagtail.images.edit_handlers import ImageChooserPanel
 from wagtail.search import index
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
+from wagtail.snippets.models import register_snippet
 
 from mongodb_blog.utils.blocks import StoryBlock
 from mongodb_blog.utils.models import BasePage
@@ -25,6 +28,11 @@ class BlogPage(BasePage):
     )
     introduction = models.TextField(blank=True)
     body = StreamField(StoryBlock())
+    author = models.ForeignKey(
+        'blog.Author',
+        on_delete=models.PROTECT,
+        related_name='blog_posts',
+    )
 
     categories = ParentalManyToManyField(
         'blog.Category',
@@ -37,6 +45,7 @@ class BlogPage(BasePage):
     ]
 
     content_panels = BasePage.content_panels + [
+        SnippetChooserPanel('author'),
         FieldPanel('publication_date'),
         FieldPanel('introduction'),
         StreamFieldPanel('body'),
@@ -106,6 +115,43 @@ class Category(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        # Populate slug if not provided
+        if not self.slug:
+            self.slug = slugify(self.name)
+
+        super().save(*args, **kwargs)
+
+
+@register_snippet
+class Author(models.Model):
+    name = models.CharField(max_length=255)
+    photo = models.ForeignKey(
+        'images.CustomImage',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL,
+        related_name='+',
+    )
+    slug = models.SlugField(
+        blank=True,
+        max_length=255,
+        help_text=(
+            "Populated from name if not populated. Note: Changing this will "
+            "change the author taxonomy URL."
+        ),
+    )
+
+    panels = [
+        FieldPanel('name', classname="full title"),
+        FieldPanel('slug'),
+        ImageChooserPanel('photo'),
+    ]
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        # Populate slug if not provided
         if not self.slug:
             self.slug = slugify(self.name)
 
