@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% load staticfiles %}
+{% load blog_tags staticfiles %}
 
 {% block content %}
 {% block blog_header %}
@@ -16,7 +16,15 @@
 {% block blog_main %}
 <main class="relative w-max-650 h-min-700 m-auto">
     <div class="w-full">
-        <aside class="absolute hide-lt-1140 w-full m-v-40 p-h-10 bg-white" style="max-width: 310px; margin-left: -300px;"><input class="input-main disp-block m-v-10" type="text" placeholder="Search all blog posts" style="width: 80%; margin-left: 3px;" /><a href="/blog/category/release-notes"><button class="btn-gray no-shadow btn-small m-2">Release Notes</button></a><a href="/blog/category/emerging-technology"><button class="btn-gray no-shadow btn-small m-2">Emerging Technology</button></a><a href="/blog/category/community"><button class="btn-gray no-shadow btn-small m-2">Community</button></a><a href="/blog/category/customer-stories"><button class="btn-gray no-shadow btn-small m-2">Customer Stories</button></a><a href="/blog/category/business"><button class="btn-gray no-shadow btn-small m-2">Business</button></a><a href="/blog/category/technical"><button class="btn-gray no-shadow btn-small m-2">Technical</button></a><a href="/blog/category/cloud"><button class="btn-gray no-shadow btn-small m-2">Cloud</button></a><a href="/blog/category/events"><button class="btn-gray no-shadow btn-small m-2">Events</button></a><a href="/blog/category/company"><button class="btn-gray no-shadow btn-small m-2">Company</button></a><a href="/blog/category/aws-re:invent-2017"><button class="btn-gray no-shadow btn-small m-2">AWS re:Invent 2017</button></a><a href="/blog/category/mongodb-3.6"><button class="btn-gray no-shadow btn-small m-2">MongoDB 3.6</button></a><a href="/blog/category/culture"><button class="btn-gray no-shadow btn-small m-2">Culture</button></a><a href="/blog/category/mongodb-4.0"><button class="btn-gray no-shadow btn-small m-2">MongoDB 4.0</button></a>
+        <aside class="absolute hide-lt-1140 w-full m-v-40 p-h-10 bg-white" style="max-width: 310px; margin-left: -300px;">
+            <input class="input-main disp-block m-v-10" type="text" placeholder="Search all blog posts" style="width: 80%; margin-left: 3px;" />
+
+            {% get_categories as categories %}
+            {% for category in categories %}
+                {# FIXME: Use the routablepageurl tag somehow #}
+                <a href="/blog/category/{{ category.slug }}/"><button class="btn-gray no-shadow btn-small m-2">{{ category.name }}</button></a>
+            {% endfor %}
+
             <div class="m-v-10"></div>
             <div hidden class="m-v-30" style="opacity: 0; transition: 300ms;"></div>
             <div class="fixed bottom m-b-20"></div>
