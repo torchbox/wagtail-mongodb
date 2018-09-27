@@ -135,6 +135,11 @@ class Category(models.Model):
         ),
     )
 
+    panels = [
+        FieldPanel('name', classname="full title"),
+        FieldPanel('slug'),
+    ]
+
     class Meta:
         verbose_name_plural = 'categories'
 
@@ -170,8 +175,8 @@ class Author(models.Model):
 
     panels = [
         FieldPanel('name', classname="full title"),
-        FieldPanel('slug'),
         ImageChooserPanel('photo'),
+        FieldPanel('slug'),
     ]
 
     def __str__(self):

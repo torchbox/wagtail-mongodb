@@ -1,4 +1,13 @@
-<blockquote>
-    <p>{{ value.quote }}</p>
-    {% if value.attribution %}{{ value.attribution }}{% endif %}
-</blockquote>
+{% load wagtailimages_tags %}
+
+<div class="blockquote-lg" style="margin-top:30px; margin-bottom:30px;">
+    {% image value.image max-300x300 style="height: auto;" %}
+
+    <blockquote>
+        {{ value.quote|linebreaks }}
+
+        {% if value.attribution %}
+            <small>{{ value.attribution }}</small>
+        {% endif %}
+    </blockquote>
+</div>

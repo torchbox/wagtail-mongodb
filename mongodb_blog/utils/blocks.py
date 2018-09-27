@@ -23,8 +23,9 @@ class DocumentBlock(blocks.StructBlock):
 
 
 class QuoteBlock(blocks.StructBlock):
-    quote = blocks.CharBlock(classname="title")
+    quote = blocks.TextBlock(classname="full")
     attribution = blocks.CharBlock(required=False)
+    image = ImageChooserBlock()
 
     class Meta:
         icon = "openquote"
