@@ -33,3 +33,13 @@
 // @import 'layout/sidebar';
 
 // Pages
+//
+
+// Fix PrismJS issues
+.token.operator {
+    background: none !important;
+}
+
+.line-numbers-rows {
+    display: none;
+}
